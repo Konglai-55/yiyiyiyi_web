@@ -17,6 +17,8 @@ import {
   UserRoundCheck,
   Wrench,
 } from "lucide-react";
+import CaseShowcase from "@/components/case-showcase";
+import RevealObserver from "@/components/reveal-observer";
 
 const navItems = ["首页", "产品展示", "AI大数据烟感", "案例", "联系我们"];
 
@@ -98,7 +100,6 @@ const cases = [
     scene: "历史文化街区 · 老旧平房院落 · 胡同商铺",
     service: "设备统一建档、常态化巡检、故障维修与7×24小时值守",
     result: "设备在线率提升至99%以上",
-    featured: true,
   },
   {
     image: "/assets/tianqiao.jpg",
@@ -121,15 +122,15 @@ const cases = [
 export default function Home() {
   return (
     <main>
-      <header className="site-header">
-        <a className="site-brand" href="#top" aria-label="壹壹壹壹安全技术有限公司首页">
+      <header className="site-header" data-reveal="down">
+        <a className="site-brand" href="#top" aria-label="壹壹壹壹安全技术有限公司首页" data-reveal="left" data-delay="1">
           <img src="/assets/brand-mark.jpg" alt="壹壹壹壹品牌标志" />
           <span>
             <strong>壹壹壹壹</strong>
             <small>（北京）安全技术有限公司</small>
           </span>
         </a>
-        <nav className="site-nav" aria-label="主导航">
+        <nav className="site-nav" aria-label="主导航" data-reveal="right" data-delay="2">
           {navItems.map((item, index) => index === 0 ? (
             <a key={item} className="site-nav-item active" href="#top">{item}</a>
           ) : (
@@ -143,26 +144,26 @@ export default function Home() {
         <div className="hero-overlay" />
         <div className="page-shell hero-inner">
           <div className="hero-copy">
-            <span className="hero-company">壹壹壹壹（北京）安全技术有限公司</span>
-            <h1>城市基层消防安全<br />智慧运营服务</h1>
-            <p>面向政府、街道、社区及重点单位，提供平台建设、智能设备接入和7×24小时专业运维服务。</p>
-            <div className="hero-product"><RadioTower aria-hidden="true" />壹消智慧火灾预警运维云平台</div>
+            <span className="hero-company" data-reveal="left" data-delay="1">壹壹壹壹（北京）安全技术有限公司</span>
+            <h1 data-reveal="left" data-delay="2">城市基层消防安全<br />智慧运营服务</h1>
+            <p data-reveal="left" data-delay="3">面向政府、街道、社区及重点单位，提供平台建设、智能设备接入和7×24小时专业运维服务。</p>
+            <div className="hero-product" data-reveal="left" data-delay="4"><RadioTower aria-hidden="true" />壹消智慧火灾预警运维云平台</div>
           </div>
           <div className="hero-facts">
-            <div><span>服务对象</span><strong>政府 · 街道 · 社区 · 重点单位</strong></div>
-            <div><span>服务模式</span><strong>设备部署 + 平台管控 + 代运维</strong></div>
-            <div><span>响应机制</span><strong>秒级预警 · 分钟处置</strong></div>
-            <a href="#company">查看完整服务体系<span aria-hidden="true">↓</span></a>
+            <div data-reveal="up" data-delay="2"><span>服务对象</span><strong>政府 · 街道 · 社区 · 重点单位</strong></div>
+            <div data-reveal="up" data-delay="3"><span>服务模式</span><strong>设备部署 + 平台管控 + 代运维</strong></div>
+            <div data-reveal="up" data-delay="4"><span>响应机制</span><strong>秒级预警 · 分钟处置</strong></div>
+            <a href="#company" data-reveal="right" data-delay="5">查看完整服务体系<span aria-hidden="true">↓</span></a>
           </div>
         </div>
       </section>
 
       <section className="company-section" id="company">
         <div className="page-shell">
-          <div className="section-number"><span>01</span><b>关于企业</b></div>
-          <div className="company-intro">
-            <h2>深耕城市基层消防治理<br />提供全周期运营服务</h2>
-            <div>
+          <div className="section-number" data-reveal="up"><span>01</span><b>关于企业</b></div>
+          <div className="company-intro" data-reveal="up" data-delay="1">
+            <h2 data-reveal="left" data-delay="2">深耕城市基层消防治理<br />提供全周期运营服务</h2>
+            <div data-reveal="right" data-delay="3">
               <p>壹壹壹壹（北京）安全技术有限公司是一家深耕城市基层智慧消防治理、专注全周期消防代运维托管的技术服务企业。公司聚焦老旧街巷、历史街区、九小场所、校园教育、老旧小区和独居居家等消防管理薄弱场景，自主搭建壹消智慧火灾预警运维云平台。</p>
               <p>区别于单一硬件销售，公司把智慧消防搭建、7×24小时云端值守和全域落地代运维连成一条服务链，持续解决设备有人装、报警有人应、故障有人修的问题。</p>
             </div>
@@ -171,7 +172,7 @@ export default function Home() {
             {services.map((service) => {
               const Icon = service.icon;
               return (
-                <article key={service.number}>
+                  <article key={service.number} data-reveal="up" data-delay={String(Number(service.number))}>
                   <div className="service-mark"><span>{service.number}</span><Icon aria-hidden="true" /></div>
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
@@ -184,27 +185,27 @@ export default function Home() {
 
       <section className="platform-section">
         <div className="page-shell">
-          <div className="section-number"><span>02</span><b>壹消平台</b></div>
-          <div className="platform-heading">
-            <h2>从感知到处置<br />把消防安全纳入日常管理</h2>
-            <p>壹消平台依托物联网感知、AI智能算法和大数据GIS可视化技术，为政府、街道和项目管理人员提供设备监控、风险研判、联动处置和运维台账。</p>
+          <div className="section-number" data-reveal="up"><span>02</span><b>壹消平台</b></div>
+          <div className="platform-heading" data-reveal="up" data-delay="1">
+            <h2 data-reveal="left" data-delay="2">从感知到处置<br />把消防安全纳入日常管理</h2>
+            <p data-reveal="right" data-delay="3">壹消平台依托物联网感知、AI智能算法和大数据GIS可视化技术，为政府、街道和项目管理人员提供设备监控、风险研判、联动处置和运维台账。</p>
           </div>
           <div className="platform-pillars">
             {platformPillars.map((pillar) => {
               const Icon = pillar.icon;
-              return <article key={pillar.label}><Icon aria-hidden="true" /><span>{pillar.label}</span><h3>{pillar.title}</h3><p>{pillar.text}</p></article>;
+              return <article key={pillar.label} data-reveal="up" data-delay={pillar.label === "技防" ? "1" : pillar.label === "人防" ? "2" : "3"}><Icon aria-hidden="true" /><span>{pillar.label}</span><h3>{pillar.title}</h3><p>{pillar.text}</p></article>;
             })}
           </div>
           <div className="platform-content">
-            <figure className="platform-screen">
+            <figure className="platform-screen" data-reveal="left" data-delay="1">
               <div><span>壹消智慧火灾预警运维云平台</span><b>告警管理界面</b></div>
               <img src="/assets/platform-dashboard.png" alt="壹消智慧消防平台告警管理界面" />
             </figure>
-            <div className="platform-list">
+            <div className="platform-list" data-reveal="right" data-delay="2">
               {platformItems.map((item) => {
                 const Icon = item.icon;
-                return (
-                  <article key={item.title}>
+                  return (
+                  <article key={item.title} data-reveal="up" data-delay={(platformItems.indexOf(item) % 4) + 1}>
                     <Icon aria-hidden="true" />
                     <div><h3>{item.title}</h3><p>{item.text}</p></div>
                   </article>
@@ -217,18 +218,18 @@ export default function Home() {
 
       <section className="sensor-section">
         <div className="page-shell sensor-layout">
-          <figure className="sensor-figure">
+          <figure className="sensor-figure" data-reveal="left">
             <img src="/assets/smoke-sensor.jpg" alt="AI大数据烟感设备" />
             <figcaption>智能烟感设备</figcaption>
           </figure>
-            <div className="sensor-copy">
-              <div className="section-number"><span>03</span><b>智能终端</b></div>
-            <h2>AI大数据烟感<br />与多维风险感知</h2>
-            <p className="sensor-lead">烟感只是感知网络的入口。平台可接入烟感、可视烟感、电气监测等终端，持续采集烟、火、电、温等风险信号，再由值守人员核实并推动现场处置。</p>
-            <dl>
+            <div className="sensor-copy" data-reveal="right">
+              <div className="section-number" data-reveal="up"><span>03</span><b>智能终端</b></div>
+            <h2 data-reveal="right" data-delay="1">AI大数据烟感<br />与多维风险感知</h2>
+            <p className="sensor-lead" data-reveal="right" data-delay="2">烟感只是感知网络的入口。平台可接入烟感、可视烟感、电气监测等终端，持续采集烟、火、电、温等风险信号，再由值守人员核实并推动现场处置。</p>
+            <dl data-reveal="up" data-delay="3">
               {sensorItems.map((item) => {
                 const Icon = item.icon;
-                return <div key={item.title}><dt><Icon aria-hidden="true" /><span>{item.title}</span></dt><dd>{item.text}</dd></div>;
+                return <div key={item.title} data-reveal="up" data-delay={(sensorItems.indexOf(item) % 4) + 1}><dt><Icon aria-hidden="true" /><span>{item.title}</span></dt><dd>{item.text}</dd></div>;
               })}
             </dl>
           </div>
@@ -237,25 +238,25 @@ export default function Home() {
 
       <section className="operations-section">
         <div className="page-shell operations-inner">
-          <div className="section-number light"><span>04</span><b>代运维服务</b></div>
-          <div className="operations-copy">
-            <h2>7×24小时人工值守<br />确保每一次告警有人响应</h2>
-            <p>自建专属值守中心，自动告警与人工复核双重把关。告警触发后，值守人员完成核验、分级研判、责任人通知和工单跟进；设备离线、低电量或故障时，平台自动提醒并派发维修任务。</p>
+          <div className="section-number light" data-reveal="up"><span>04</span><b>代运维服务</b></div>
+          <div className="operations-copy" data-reveal="up" data-delay="1">
+            <h2 data-reveal="left" data-delay="2">7×24小时人工值守<br />确保每一次告警有人响应</h2>
+            <p data-reveal="right" data-delay="3">自建专属值守中心，自动告警与人工复核双重把关。告警触发后，值守人员完成核验、分级研判、责任人通知和工单跟进；设备离线、低电量或故障时，平台自动提醒并派发维修任务。</p>
           </div>
           <div className="operation-assurances">
             {operationAssurances.map((item) => {
               const Icon = item.icon;
-              return <article key={item.title}><Icon aria-hidden="true" /><h3>{item.title}</h3><p>{item.text}</p></article>;
+              return <article key={item.title} data-reveal="up" data-delay={(operationAssurances.indexOf(item) % 3) + 1}><Icon aria-hidden="true" /><h3>{item.title}</h3><p>{item.text}</p></article>;
             })}
           </div>
-          <figure className="operations-media">
+          <figure className="operations-media" data-reveal="scale" data-delay="2">
             <img src="/assets/operations-center.jpg" alt="壹消智慧消防运营中心实景" />
             <figcaption><span>运营保障</span><strong>智慧消防运营中心实景</strong></figcaption>
           </figure>
           <ol className="process-list">
             {operationSteps.map((step) => {
               const Icon = step.icon;
-              return <li key={step.number}><div><Icon aria-hidden="true" /><span>{step.number}</span></div><strong>{step.title}</strong><small>{step.detail}</small></li>;
+              return <li key={step.number} data-reveal="up" data-delay={String(Number(step.number))}><div><Icon aria-hidden="true" /><span>{step.number}</span></div><strong>{step.title}</strong><small>{step.detail}</small></li>;
             })}
           </ol>
         </div>
@@ -263,74 +264,60 @@ export default function Home() {
 
       <section className="mode-section">
         <div className="page-shell">
-          <div className="section-number"><span>05</span><b>整体服务模式</b></div>
-          <div className="mode-heading">
-            <h2>一体化全包服务<br />让甲方少操心、能验收</h2>
-            <p>硬件设备部署、壹消云平台管控、7×24小时人工值守和全周期代运维协同运行。甲方无需另行配备专职值守人员，也无需自行对接维修和整理台账。</p>
+          <div className="section-number" data-reveal="up"><span>05</span><b>整体服务模式</b></div>
+          <div className="mode-heading" data-reveal="up" data-delay="1">
+            <h2 data-reveal="left" data-delay="2">一体化全包服务<br />让甲方少操心、能验收</h2>
+            <p data-reveal="right" data-delay="3">硬件设备部署、壹消云平台管控、7×24小时人工值守和全周期代运维协同运行。甲方无需另行配备专职值守人员，也无需自行对接维修和整理台账。</p>
           </div>
           <div className="mode-grid">
             {serviceMode.map((item) => {
               const Icon = item.icon;
-              return <article key={item.number}><div className="mode-mark"><span>{item.number}</span><Icon aria-hidden="true" /></div><h3>{item.title}</h3><p>{item.text}</p></article>;
+              return <article key={item.number} data-reveal="up" data-delay={String(Number(item.number))}><div className="mode-mark"><span>{item.number}</span><Icon aria-hidden="true" /></div><h3>{item.title}</h3><p>{item.text}</p></article>;
             })}
           </div>
-          <div className="mode-footnote"><strong>服务结果</strong><span>消防安全智能化、常态化、标准化、闭环化管理</span></div>
+          <div className="mode-footnote" data-reveal="up" data-delay="2"><strong>服务结果</strong><span>消防安全智能化、常态化、标准化、闭环化管理</span></div>
         </div>
       </section>
 
       <section className="results-section">
         <div className="page-shell">
-          <div className="section-number"><span>06</span><b>项目运行情况</b></div>
-          <div className="results-heading">
-            <h2>项目运行数据<br />对应真实的服务结果</h2>
-            <p>以下数据整理自公司现有项目资料及媒体报道，用于说明设备规模、重点人群守护和典型风险处置情况。</p>
+          <div className="section-number" data-reveal="up"><span>06</span><b>项目运行情况</b></div>
+          <div className="results-heading" data-reveal="up" data-delay="1">
+            <h2 data-reveal="left" data-delay="2">项目运行数据<br />对应真实的服务结果</h2>
+            <p data-reveal="right" data-delay="3">以下数据整理自公司现有项目资料及媒体报道，用于说明设备规模、重点人群守护和典型风险处置情况。</p>
           </div>
           <div className="metrics-list">
             {metrics.map((metric) => {
               const Icon = metric.icon;
-              return <div key={metric.label}><Icon aria-hidden="true" /><strong>{metric.value}<sup>{metric.unit}</sup></strong><span>{metric.label}</span><small>{metric.detail}</small></div>;
+              return <div key={metric.label} data-reveal="up" data-delay={(metrics.indexOf(metric) % 4) + 1}><Icon aria-hidden="true" /><strong>{metric.value}<sup>{metric.unit}</sup></strong><span>{metric.label}</span><small>{metric.detail}</small></div>;
             })}
           </div>
-          <p className="results-note">数据来源：公司项目资料及相关媒体报道，具体项目数据以合同、验收和运维报告为准。</p>
+          <p className="results-note" data-reveal="up" data-delay="2">数据来源：公司项目资料及相关媒体报道，具体项目数据以合同、验收和运维报告为准。</p>
         </div>
       </section>
 
-      <section className="cases-section">
+      <section className="cases-section" id="cases">
         <div className="page-shell">
-          <div className="section-number"><span>07</span><b>服务案例</b></div>
-          <div className="cases-heading">
-            <h2>落地项目与服务场景</h2>
-            <p>不是简单部署设备，而是围绕不同区域的管理难题建立长期运维机制。</p>
+          <div className="section-number" data-reveal="up"><span>07</span><b>服务案例</b></div>
+          <div className="cases-heading" data-reveal="up" data-delay="1">
+            <h2 data-reveal="left" data-delay="2">落地项目与服务场景</h2>
+            <p data-reveal="right" data-delay="3">不是简单部署设备，而是围绕不同区域的管理难题建立长期运维机制。</p>
           </div>
-          <div className="cases-grid">
-            {cases.map((item, index) => (
-              <article className={item.featured ? "case-item featured" : "case-item"} key={item.title}>
-                <img src={item.image} alt={`${item.title}智慧消防项目现场`} />
-                <div className="case-overlay" />
-                <span className="case-index">0{index + 1}</span>
-                <div className="case-copy">
-                  <span>{item.location}</span>
-                  <h3>{item.title}</h3>
-                  <p className="case-scene">{item.scene}</p>
-                  <p className="case-service"><b>服务内容</b>{item.service}</p>
-                  <p className="case-result"><b>运行结果</b>{item.result}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <CaseShowcase cases={cases} />
         </div>
       </section>
 
       <footer className="site-footer">
         <div className="page-shell footer-main">
-          <div className="footer-brand">
+          <div className="footer-brand" data-reveal="left">
             <img src="/assets/brand-mark.jpg" alt="" />
             <div><strong>壹壹壹壹（北京）安全技术有限公司</strong><span>智慧消防建设与运营服务</span></div>
           </div>
-          <div className="footer-product"><span>核心产品</span><strong>壹消智慧火灾预警运维云平台</strong></div>
+          <div className="footer-product" data-reveal="right" data-delay="1"><span>核心产品</span><strong>壹消智慧火灾预警运维云平台</strong></div>
         </div>
-        <div className="page-shell footer-bottom"><span>© 2026 壹壹壹壹（北京）安全技术有限公司</span><span>本页为官方网站首页小样</span></div>
+        <div className="page-shell footer-bottom" data-reveal="up" data-delay="2"><span>© 2026 壹壹壹壹（北京）安全技术有限公司</span><span>本页为官方网站首页小样</span></div>
       </footer>
+      <RevealObserver />
     </main>
   );
 }
