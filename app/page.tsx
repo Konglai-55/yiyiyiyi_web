@@ -1,17 +1,39 @@
+import {
+  AlarmSmoke,
+  BellRing,
+  ChartNoAxesColumnIncreasing,
+  ClipboardCheck,
+  Database,
+  FileCheck2,
+  Flame,
+  Headphones,
+  HeartHandshake,
+  MapPinned,
+  MonitorCog,
+  PhoneCall,
+  RadioTower,
+  ScanSearch,
+  ShieldCheck,
+  UserRoundCheck,
+} from "lucide-react";
+
 const navItems = ["首页", "产品展示", "AI大数据烟感", "案例", "联系我们"];
 
 const services = [
   {
+    icon: MonitorCog,
     number: "01",
     title: "智慧消防平台建设",
     text: "统一接入消防物联设备和报警信息，为管理部门提供设备状态、报警记录和处置进度。",
   },
   {
+    icon: RadioTower,
     number: "02",
     title: "智能设备接入",
     text: "支持智能烟感、电气火灾、水系统等终端接入，并建立设备档案和日常巡检记录。",
   },
   {
+    icon: Headphones,
     number: "03",
     title: "专业代运维服务",
     text: "提供全天值守、报警核实、人员通知、工单流转和设备维护，保障系统持续运行。",
@@ -19,19 +41,33 @@ const services = [
 ];
 
 const platformItems = [
-  ["设备管理", "查看设备在线、离线、故障及运行状态"],
-  ["报警管理", "汇总报警信息并记录核实、通知和处置过程"],
-  ["地图查看", "按区域、场所和设备位置查看消防风险"],
-  ["统计分析", "形成设备、报警、工单等日常管理数据"],
+  { icon: Database, title: "设备管理", text: "查看设备在线、离线、故障及运行状态" },
+  { icon: BellRing, title: "报警管理", text: "汇总报警信息并记录核实、通知和处置过程" },
+  { icon: MapPinned, title: "地图查看", text: "按区域、场所和设备位置查看消防风险" },
+  { icon: ChartNoAxesColumnIncreasing, title: "统计分析", text: "形成设备、报警、工单等日常管理数据" },
+];
+
+const sensorItems = [
+  { icon: AlarmSmoke, title: "报警上报", text: "发现烟雾后同步向平台发送报警信息" },
+  { icon: ScanSearch, title: "远程查看", text: "在线查询设备状态、报警和故障记录" },
+  { icon: PhoneCall, title: "消息通知", text: "通过平台和电话通知相关管理人员" },
+  { icon: ClipboardCheck, title: "过程留痕", text: "完整记录报警核实与现场处置情况" },
 ];
 
 const operationSteps = [
-  ["01", "设备报警"],
-  ["02", "平台接警"],
-  ["03", "人工核实"],
-  ["04", "通知人员"],
-  ["05", "现场处置"],
-  ["06", "记录归档"],
+  { icon: AlarmSmoke, number: "01", title: "设备报警" },
+  { icon: MonitorCog, number: "02", title: "平台接警" },
+  { icon: UserRoundCheck, number: "03", title: "人工核实" },
+  { icon: PhoneCall, number: "04", title: "通知人员" },
+  { icon: ShieldCheck, number: "05", title: "现场处置" },
+  { icon: FileCheck2, number: "06", title: "记录归档" },
+];
+
+const metrics = [
+  { icon: RadioTower, value: "989", unit: "台", label: "智能烟感设备" },
+  { icon: HeartHandshake, value: "520", unit: "位", label: "重点老人守护" },
+  { icon: Flame, value: "122", unit: "起", label: "火警及时处置" },
+  { icon: AlarmSmoke, value: "13", unit: "起", label: "锅烧干隐患预警" },
 ];
 
 const cases = [
@@ -84,7 +120,7 @@ export default function Home() {
             <span className="hero-company">壹壹壹壹（北京）安全技术有限公司</span>
             <h1>城市基层<br />智慧消防运营服务</h1>
             <p>面向政府、街道、社区及重点单位，提供平台建设、智能设备接入和7×24小时专业运维服务。</p>
-            <div className="hero-product"><i />壹消智慧火灾预警运维云平台</div>
+            <div className="hero-product"><RadioTower aria-hidden="true" />壹消智慧火灾预警运维云平台</div>
           </div>
           <div className="hero-facts">
             <div><span>服务对象</span><strong>政府 · 街道 · 社区</strong></div>
@@ -106,13 +142,16 @@ export default function Home() {
             </div>
           </div>
           <div className="service-list">
-            {services.map((service) => (
-              <article key={service.number}>
-                <span>{service.number}</span>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </article>
-            ))}
+            {services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <article key={service.number}>
+                  <div className="service-mark"><span>{service.number}</span><Icon aria-hidden="true" /></div>
+                  <h3>{service.title}</h3>
+                  <p>{service.text}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -130,12 +169,15 @@ export default function Home() {
               <img src="/assets/platform-dashboard.png" alt="壹消智慧消防平台告警管理界面" />
             </figure>
             <div className="platform-list">
-              {platformItems.map(([title, text], index) => (
-                <article key={title}>
-                  <span>0{index + 1}</span>
-                  <div><h3>{title}</h3><p>{text}</p></div>
-                </article>
-              ))}
+              {platformItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.title}>
+                    <Icon aria-hidden="true" />
+                    <div><h3>{item.title}</h3><p>{item.text}</p></div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -152,10 +194,10 @@ export default function Home() {
             <h2>AI大数据烟感</h2>
             <p className="sensor-lead">烟感报警后，信息同步上传至壹消平台。值守人员可及时核实情况，并通知现场相关人员处理。</p>
             <dl>
-              <div><dt>报警上报</dt><dd>发现烟雾后同步向平台发送报警信息</dd></div>
-              <div><dt>远程查看</dt><dd>在线查询设备状态、报警和故障记录</dd></div>
-              <div><dt>消息通知</dt><dd>通过平台和电话通知相关管理人员</dd></div>
-              <div><dt>过程留痕</dt><dd>完整记录报警核实与现场处置情况</dd></div>
+              {sensorItems.map((item) => {
+                const Icon = item.icon;
+                return <div key={item.title}><dt><Icon aria-hidden="true" /><span>{item.title}</span></dt><dd>{item.text}</dd></div>;
+              })}
             </dl>
           </div>
         </div>
@@ -173,9 +215,10 @@ export default function Home() {
             <figcaption><span>运营保障</span><strong>智慧消防运营中心实景</strong></figcaption>
           </figure>
           <ol className="process-list">
-            {operationSteps.map(([number, title]) => (
-              <li key={number}><span>{number}</span><strong>{title}</strong></li>
-            ))}
+            {operationSteps.map((step) => {
+              const Icon = step.icon;
+              return <li key={step.number}><div><Icon aria-hidden="true" /><span>{step.number}</span></div><strong>{step.title}</strong></li>;
+            })}
           </ol>
         </div>
       </section>
@@ -188,10 +231,10 @@ export default function Home() {
             <p>以下数据整理自公司现有项目资料及媒体报道。</p>
           </div>
           <div className="metrics-list">
-            <div><strong>989<sup>台</sup></strong><span>智能烟感设备</span></div>
-            <div><strong>520<sup>位</sup></strong><span>重点老人守护</span></div>
-            <div><strong>122<sup>起</sup></strong><span>火警及时处置</span></div>
-            <div><strong>13<sup>起</sup></strong><span>锅烧干隐患预警</span></div>
+            {metrics.map((metric) => {
+              const Icon = metric.icon;
+              return <div key={metric.label}><Icon aria-hidden="true" /><strong>{metric.value}<sup>{metric.unit}</sup></strong><span>{metric.label}</span></div>;
+            })}
           </div>
         </div>
       </section>
