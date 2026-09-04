@@ -118,7 +118,7 @@ export default function Home() {
         <div className="page-shell hero-inner">
           <div className="hero-copy">
             <span className="hero-company">壹壹壹壹（北京）安全技术有限公司</span>
-            <h1>城市基层<br />智慧消防运营服务</h1>
+            <h1>城市基层消防安全<br />智慧运营服务</h1>
             <p>面向政府、街道、社区及重点单位，提供平台建设、智能设备接入和7×24小时专业运维服务。</p>
             <div className="hero-product"><RadioTower aria-hidden="true" />壹消智慧火灾预警运维云平台</div>
           </div>
