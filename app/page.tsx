@@ -18,6 +18,7 @@ import {
   Wrench,
 } from "lucide-react";
 import CaseShowcase from "@/components/case-showcase";
+import ImageLightbox from "@/components/image-lightbox";
 import RevealObserver from "@/components/reveal-observer";
 
 const navItems = ["首页", "产品展示", "AI大数据烟感", "案例", "联系我们"];
@@ -124,7 +125,7 @@ export default function Home() {
     <main>
       <header className="site-header" data-reveal="down">
         <a className="site-brand" href="#top" aria-label="壹壹壹壹安全技术有限公司首页" data-reveal="left" data-delay="1">
-          <img src="/assets/brand-mark.jpg" alt="壹壹壹壹品牌标志" />
+          <img src="/assets/brand-mark.jpg" alt="壹壹壹壹品牌标志" data-lightbox />
           <span>
             <strong>壹壹壹壹</strong>
             <small>（北京）安全技术有限公司</small>
@@ -140,7 +141,7 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top">
-        <img className="hero-image" src="/assets/command-center-hero.jpg" alt="西城区大栅栏街道智慧消防与交通治理安全沙盘实景" />
+        <img className="hero-image" src="/assets/command-center-hero.jpg" alt="西城区大栅栏街道智慧消防与交通治理安全沙盘实景" data-lightbox />
         <div className="hero-overlay" />
         <div className="page-shell hero-inner">
           <div className="hero-copy">
@@ -208,7 +209,7 @@ export default function Home() {
           <div className="platform-content">
             <figure className="platform-screen" data-reveal="left" data-delay="1">
               <div><span>壹消智慧火灾预警运维云平台</span><b>告警管理界面</b></div>
-              <img src="/assets/platform-dashboard.png" alt="壹消智慧消防平台告警管理界面" />
+              <img src="/assets/platform-dashboard.png" alt="壹消智慧消防平台告警管理界面" data-lightbox />
             </figure>
             <div className="platform-list" data-reveal="right" data-delay="2">
               {platformItems.map((item) => {
@@ -229,7 +230,7 @@ export default function Home() {
         <div className="page-shell sensor-layout">
           <figure className="sensor-figure" data-reveal="left">
             <div className="sensor-tech-lines" aria-hidden="true"><i className="sensor-node sensor-node-a" /><i className="sensor-node sensor-node-b" /><i className="sensor-node sensor-node-c" /></div>
-            <div className="sensor-image-wrap"><img src="/assets/smoke-sensor.png" alt="AI大数据烟感设备" /></div>
+            <div className="sensor-image-wrap"><img src="/assets/smoke-sensor.png" alt="AI大数据烟感设备" data-lightbox /></div>
             <figcaption>智能烟感设备</figcaption>
           </figure>
             <div className="sensor-copy" data-reveal="right">
@@ -260,7 +261,7 @@ export default function Home() {
             })}
           </div>
           <figure className="operations-media" data-reveal="scale" data-delay="2">
-            <img src="/assets/operations-center.jpg" alt="壹消智慧消防运营中心实景" />
+            <img src="/assets/operations-center.jpg" alt="壹消智慧消防运营中心实景" data-lightbox />
             <figcaption><span>运营保障</span><strong>智慧消防运营中心实景</strong></figcaption>
           </figure>
           <ol className="process-list">
@@ -322,7 +323,7 @@ export default function Home() {
         <div className="page-shell footer-main">
           <div className="footer-overview" data-reveal="left">
             <div className="footer-brand">
-              <img src="/assets/brand-mark.jpg" alt="壹壹壹壹品牌标志" />
+              <img src="/assets/brand-mark.jpg" alt="壹壹壹壹品牌标志" data-lightbox />
               <div><strong>壹壹壹壹（北京）安全技术有限公司</strong><span>智慧消防系统建设与长期运营服务</span></div>
             </div>
             <p>面向政府、街道、社区及重点单位，提供平台建设、智能设备接入、7×24小时人工值守和全周期代运维托管。</p>
@@ -348,6 +349,7 @@ export default function Home() {
         </div>
         <div className="page-shell footer-bottom" data-reveal="up" data-delay="2"><span>© 2026 壹壹壹壹（北京）安全技术有限公司</span><span>消防安全智能化 · 常态化 · 标准化 · 闭环化</span></div>
       </footer>
+      <ImageLightbox />
       <RevealObserver />
     </main>
   );

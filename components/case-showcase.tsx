@@ -106,7 +106,7 @@ export default function CaseShowcase({ cases }: CaseShowcaseProps) {
               slideRefs.current[index] = node;
             }}
           >
-            <img src={item.image} alt={`${item.title}智慧消防项目现场`} />
+            <img src={item.image} alt={`${item.title}智慧消防项目现场`} data-lightbox />
             <div className="case-slide-overlay" />
             <div className="case-slide-top" data-reveal="down" data-delay="1">
               <span className="case-slide-index">0{index + 1}</span>
