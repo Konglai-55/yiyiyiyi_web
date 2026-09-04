@@ -136,7 +136,7 @@ export default function CaseShowcase({ cases }: CaseShowcaseProps) {
           ))}
         </div>
         <div className="case-navigation-bottom">
-          <span><MoveHorizontal aria-hidden="true" />滚动 / 拖动查看项目</span>
+          <span><MoveHorizontal aria-hidden="true" />滚动 / 拖动查看 3 个项目</span>
           <div>
             <button type="button" aria-label="上一个案例" onClick={() => moveTo(activeIndex - 1)} disabled={activeIndex === 0}><ArrowLeft aria-hidden="true" /></button>
             <button type="button" aria-label="下一个案例" onClick={() => moveTo(activeIndex + 1)} disabled={activeIndex === cases.length - 1}><ArrowRight aria-hidden="true" /></button>
