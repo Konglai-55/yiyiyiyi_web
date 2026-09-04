@@ -47,7 +47,7 @@ img[data-lightbox]:focus-visible { outline: 3px solid rgba(116,190,224,.9); outl
 .hero-copy { width: min(760px,62%); margin-top: clamp(220px,28vh,320px); }
 .hero-company { display: flex; align-items: center; gap: 14px; margin-bottom: 27px; color: #c2d3de; font-size: 17px; letter-spacing: .08em; }
 .hero-company::before { content: ""; width: 30px; height: 3px; background: var(--red); }
-.hero h1 { max-width: 860px; margin: 0; font-size: clamp(60px,5.4vw,92px); line-height: 1.12; font-weight: 500; letter-spacing: -.07em; }
+.hero h1 { max-width: 860px; margin: 0; font-size: clamp(60px,5.4vw,92px); line-height: 1.18; font-weight: 700; letter-spacing: -.045em; }
 .hero-title-accent { color: #f7fbfd; text-shadow: 0 0 32px rgba(126,194,230,.18); }
 .hero-copy > p { max-width: 620px; margin: 27px 0 0; color: rgba(255,255,255,.82); font-size: 20px; line-height: 1.9; }
 .hero-product { display: flex; align-items: center; gap: 13px; margin-top: 27px; color: #d9e8ef; font-size: 17px; }
