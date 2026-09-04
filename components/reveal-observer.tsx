@@ -10,6 +10,9 @@ import { useEffect } from "react";
 export default function RevealObserver() {
   useEffect(() => {
     document.documentElement.dataset.motionReady = "true";
+    const introFrame = window.requestAnimationFrame(() => {
+      document.documentElement.dataset.heroIntro = "true";
+    });
 
     const supportsIntersectionObserver = "IntersectionObserver" in window;
     const revealImmediately = (node: HTMLElement) => node.classList.add("is-visible");
@@ -52,6 +55,8 @@ export default function RevealObserver() {
     mutations.observe(document.body, { attributes: true, attributeFilter: ["data-reveal"], childList: true, subtree: true });
 
     return () => {
+      window.cancelAnimationFrame(introFrame);
+      delete document.documentElement.dataset.heroIntro;
       observer?.disconnect();
       mutations.disconnect();
     };
