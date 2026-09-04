@@ -171,7 +171,7 @@ export default function Home() {
         <div className="page-shell">
           <div className="section-number" data-reveal="up"><span>01</span><b>关于企业</b></div>
           <div className="company-intro" data-reveal="up" data-delay="1">
-            <h2 data-reveal="left" data-delay="2">深耕城市基层消防治理<br />提供全周期运营服务</h2>
+            <h2 data-reveal="left" data-delay="2">深耕城市基层消防治理<br /><span className="section-title-accent">提供全周期运营服务</span></h2>
             <div data-reveal="right" data-delay="3">
               <p>壹壹壹壹（北京）安全技术有限公司是一家深耕城市基层智慧消防治理、专注全周期消防代运维托管的技术服务企业。公司聚焦老旧街巷、历史街区、九小场所、校园教育、老旧小区和独居居家等消防管理薄弱场景，自主搭建壹消智慧火灾预警运维云平台。</p>
               <p>区别于单一硬件销售，公司把智慧消防搭建、7×24小时云端值守和全域落地代运维连成一条服务链，持续解决设备有人装、报警有人应、故障有人修的问题。</p>
@@ -196,7 +196,7 @@ export default function Home() {
         <div className="page-shell">
           <div className="section-number" data-reveal="up"><span>02</span><b>壹消平台</b></div>
           <div className="platform-heading" data-reveal="up" data-delay="1">
-            <h2 data-reveal="left" data-delay="2">从感知到处置<br />把消防安全纳入日常管理</h2>
+            <h2 data-reveal="left" data-delay="2">从感知到处置<br /><span className="section-title-accent">把消防安全纳入日常管理</span></h2>
             <p data-reveal="right" data-delay="3">壹消平台依托物联网感知、AI智能算法和大数据GIS可视化技术，为政府、街道和项目管理人员提供设备监控、风险研判、联动处置和运维台账。</p>
           </div>
           <div className="platform-pillars">
@@ -233,7 +233,7 @@ export default function Home() {
           </figure>
             <div className="sensor-copy" data-reveal="right">
               <div className="section-number" data-reveal="up"><span>03</span><b>智能终端</b></div>
-            <h2 data-reveal="right" data-delay="1">AI大数据烟感<br />与多维风险感知</h2>
+            <h2 data-reveal="right" data-delay="1">AI大数据烟感<br /><span className="section-title-accent">与多维风险感知</span></h2>
             <p className="sensor-lead" data-reveal="right" data-delay="2">烟感只是感知网络的入口。平台可接入烟感、可视烟感、电气监测等终端，持续采集烟、火、电、温等风险信号，再由值守人员核实并推动现场处置。</p>
             <dl data-reveal="up" data-delay="3">
               {sensorItems.map((item) => {
@@ -249,7 +249,7 @@ export default function Home() {
         <div className="page-shell operations-inner">
           <div className="section-number light" data-reveal="up"><span>04</span><b>代运维服务</b></div>
           <div className="operations-copy" data-reveal="up" data-delay="1">
-            <h2 data-reveal="left" data-delay="2">7×24小时人工值守<br />确保每一次告警有人响应</h2>
+            <h2 data-reveal="left" data-delay="2">7×24小时人工值守<br /><span className="section-title-accent">确保每一次告警有人响应</span></h2>
             <p data-reveal="right" data-delay="3">自建专属值守中心，自动告警与人工复核双重把关。告警触发后，值守人员完成核验、分级研判、责任人通知和工单跟进；设备离线、低电量或故障时，平台自动提醒并派发维修任务。</p>
           </div>
           <div className="operation-assurances">
@@ -275,7 +275,7 @@ export default function Home() {
         <div className="page-shell">
           <div className="section-number" data-reveal="up"><span>05</span><b>整体服务模式</b></div>
           <div className="mode-heading" data-reveal="up" data-delay="1">
-            <h2 data-reveal="left" data-delay="2">一体化全包服务<br />让甲方少操心、能验收</h2>
+            <h2 data-reveal="left" data-delay="2">一体化全包服务<br /><span className="section-title-accent">让甲方少操心、能验收</span></h2>
             <p data-reveal="right" data-delay="3">硬件设备部署、壹消云平台管控、7×24小时人工值守和全周期代运维协同运行。甲方无需另行配备专职值守人员，也无需自行对接维修和整理台账。</p>
           </div>
           <div className="mode-grid">
@@ -292,7 +292,7 @@ export default function Home() {
         <div className="page-shell">
           <div className="section-number" data-reveal="up"><span>06</span><b>项目运行情况</b></div>
           <div className="results-heading" data-reveal="up" data-delay="1">
-            <h2 data-reveal="left" data-delay="2">项目运行数据<br />对应真实的服务结果</h2>
+            <h2 data-reveal="left" data-delay="2">项目运行数据<br /><span className="section-title-accent">对应真实的服务结果</span></h2>
             <p data-reveal="right" data-delay="3">以下数据整理自公司现有项目资料及媒体报道，用于说明设备规模、重点人群守护和典型风险处置情况。</p>
           </div>
           <div className="metrics-list">
@@ -309,7 +309,7 @@ export default function Home() {
         <div className="page-shell">
           <div className="section-number" data-reveal="up"><span>07</span><b>服务案例</b></div>
           <div className="cases-heading" data-reveal="up" data-delay="1">
-            <h2 data-reveal="left" data-delay="2">落地项目与服务场景</h2>
+            <h2 data-reveal="left" data-delay="2">落地项目与<span className="section-title-accent">服务场景</span></h2>
             <p data-reveal="right" data-delay="3">不是简单部署设备，而是围绕不同区域的管理难题建立长期运维机制。</p>
           </div>
           <CaseShowcase cases={cases} />

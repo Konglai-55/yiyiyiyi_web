@@ -73,9 +73,11 @@ img { display: block; max-width: 100%; }
 /* Shared section details */
 .section-number { display: flex; align-items: center; gap: 18px; color: var(--ink); }
 .section-number span { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #aeb8be; color: var(--red); font: 700 14px Arial, sans-serif; }
-.section-number b { font-size: 16px; font-weight: 600; letter-spacing: .08em; }
+.section-number b { color: var(--red); font-size: 16px; font-weight: 600; letter-spacing: .08em; }
 .section-number.light { color: #fff; }
 .section-number.light span { border-color: rgba(255,255,255,.42); }
+.section-number.light b { color: #f07b80; }
+.section-title-accent { color: var(--red); }
 
 /* Scroll entrance motion */
 [data-delay="1"] { --reveal-delay: 70ms; }
