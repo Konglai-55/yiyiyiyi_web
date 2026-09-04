@@ -317,15 +317,36 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="site-footer">
+      <footer className="site-footer" id="contact">
+        <div className="footer-accent" aria-hidden="true" />
         <div className="page-shell footer-main">
-          <div className="footer-brand" data-reveal="left">
-            <img src="/assets/brand-mark.jpg" alt="" />
-            <div><strong>壹壹壹壹（北京）安全技术有限公司</strong><span>智慧消防建设与运营服务</span></div>
+          <div className="footer-overview" data-reveal="left">
+            <div className="footer-brand">
+              <img src="/assets/brand-mark.jpg" alt="壹壹壹壹品牌标志" />
+              <div><strong>壹壹壹壹（北京）安全技术有限公司</strong><span>智慧消防系统建设与长期运营服务</span></div>
+            </div>
+            <p>面向政府、街道、社区及重点单位，提供平台建设、智能设备接入、7×24小时人工值守和全周期代运维托管。</p>
+            <div className="footer-platform"><RadioTower aria-hidden="true" /><span>壹消智慧火灾预警运维云平台</span></div>
           </div>
-          <div className="footer-product" data-reveal="right" data-delay="1"><span>核心产品</span><strong>壹消智慧火灾预警运维云平台</strong></div>
+          <div className="footer-columns">
+            <section data-reveal="up" data-delay="1">
+              <h3>核心能力</h3>
+              <ul><li>全域GIS一张图</li><li>AI智能分级告警</li><li>7×24小时专职值守</li><li>全闭环运维工单</li></ul>
+            </section>
+            <section data-reveal="up" data-delay="2">
+              <h3>服务场景</h3>
+              <ul><li>历史文化街区</li><li>老旧院落与社区</li><li>沿街商铺与九小场所</li><li>中小学及幼儿园</li></ul>
+            </section>
+            <section className="footer-contact" data-reveal="up" data-delay="3">
+              <h3>项目咨询</h3>
+              <span>商务联系</span>
+              <strong>熊贵齐</strong>
+              <a href="tel:17600000015">176 0000 0015</a>
+              <small>方案沟通与项目合作</small>
+            </section>
+          </div>
         </div>
-        <div className="page-shell footer-bottom" data-reveal="up" data-delay="2"><span>© 2026 壹壹壹壹（北京）安全技术有限公司</span><span>本页为官方网站首页小样</span></div>
+        <div className="page-shell footer-bottom" data-reveal="up" data-delay="2"><span>© 2026 壹壹壹壹（北京）安全技术有限公司</span><span>消防安全智能化 · 常态化 · 标准化 · 闭环化</span></div>
       </footer>
       <RevealObserver />
     </main>
