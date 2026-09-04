@@ -17,9 +17,26 @@ type CaseShowcaseProps = {
 };
 
 export default function CaseShowcase({ cases }: CaseShowcaseProps) {
+  const showcaseRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<Array<HTMLElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    // The showcase is a streamed client island. Give its own reveal nodes a
+    // deterministic fallback in case the page-level observer mounted before
+    // this island finished hydrating.
+    let secondFrame = 0;
+    const firstFrame = requestAnimationFrame(() => {
+      secondFrame = requestAnimationFrame(() => {
+        showcaseRef.current?.querySelectorAll<HTMLElement>("[data-reveal]").forEach((node) => node.classList.add("is-visible"));
+      });
+    });
+    return () => {
+      cancelAnimationFrame(firstFrame);
+      if (secondFrame) cancelAnimationFrame(secondFrame);
+    };
+  }, []);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -71,7 +88,7 @@ export default function CaseShowcase({ cases }: CaseShowcaseProps) {
   };
 
   return (
-    <div className="cases-showcase">
+    <div className="cases-showcase" ref={showcaseRef}>
       <section
         className="case-track"
         ref={trackRef}

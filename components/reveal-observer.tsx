@@ -39,6 +39,9 @@ export default function RevealObserver() {
     // case showcase). Observe new nodes too so they never remain transparent.
     const mutations = new MutationObserver((records) => {
       records.forEach((record) => {
+        if (record.type === "attributes" && record.target instanceof HTMLElement) {
+          watch(record.target);
+        }
         record.addedNodes.forEach((addedNode) => {
           if (!(addedNode instanceof HTMLElement)) return;
           if (addedNode.matches("[data-reveal]")) watch(addedNode);
@@ -46,7 +49,7 @@ export default function RevealObserver() {
         });
       });
     });
-    mutations.observe(document.body, { childList: true, subtree: true });
+    mutations.observe(document.body, { attributes: true, attributeFilter: ["data-reveal"], childList: true, subtree: true });
 
     return () => {
       observer?.disconnect();
