@@ -143,9 +143,18 @@ html[data-motion-ready] [data-reveal].is-visible { opacity: 1; transform: none; 
 /* Sensor */
 .sensor-section { padding: 152px 0; background: #fff; }
 .sensor-layout { display: grid; grid-template-columns: .88fr 1.12fr; gap: 120px; align-items: center; }
-.sensor-figure { position: relative; height: 620px; margin: 0; padding: 68px; background: #e8ecee; }
-.sensor-figure::before { content: ""; position: absolute; top: 0; left: 0; width: 8px; height: 84px; background: var(--red); }
-.sensor-figure img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
+.sensor-figure { position: relative; height: 620px; margin: 0; padding: 0; overflow: visible; background: transparent; }
+.sensor-figure::before { content: ""; position: absolute; top: 50%; left: 50%; width: 465px; height: 465px; border: 1px solid rgba(23,106,156,.28); border-radius: 50%; transform: translate(-50%,-50%); box-shadow: 0 0 0 30px rgba(23,106,156,.035), 0 0 0 74px rgba(23,106,156,.022); }
+.sensor-figure::after { content: ""; position: absolute; top: 50%; left: 50%; width: 545px; height: 170px; border-top: 1px solid rgba(23,106,156,.24); border-bottom: 1px solid rgba(23,106,156,.12); border-radius: 50%; transform: translate(-50%,-50%) rotate(-24deg); }
+.sensor-image-wrap { position: absolute; inset: 10% 7%; z-index: 1; display: grid; place-items: center; }
+.sensor-image-wrap img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 22px 28px rgba(7,26,43,.16)); }
+.sensor-tech-lines { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.sensor-tech-lines::before { content: ""; position: absolute; top: 50%; left: 50%; width: 350px; height: 350px; border: 1px dashed rgba(23,106,156,.34); border-radius: 50%; transform: translate(-50%,-50%) rotate(18deg); }
+.sensor-tech-lines::after { content: ""; position: absolute; top: 50%; left: 50%; width: 600px; height: 110px; border: 1px solid rgba(201,46,53,.24); border-radius: 50%; transform: translate(-50%,-50%) rotate(18deg); }
+.sensor-node { position: absolute; width: 7px; height: 7px; border: 1px solid #fff; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 5px rgba(23,106,156,.12), 0 0 16px rgba(23,106,156,.45); }
+.sensor-node-a { top: 19%; left: 24%; }
+.sensor-node-b { top: 28%; right: 15%; background: var(--red); box-shadow: 0 0 0 5px rgba(201,46,53,.12), 0 0 16px rgba(201,46,53,.38); }
+.sensor-node-c { right: 22%; bottom: 19%; }
 .sensor-figure figcaption { position: absolute; left: 25px; bottom: 24px; color: #65747d; font-size: 14px; }
 .sensor-copy h2 { margin: 44px 0 27px; color: var(--blue); font-size: clamp(48px,4vw,66px); line-height: 1.2; font-weight: 560; letter-spacing: -.05em; }
 .sensor-lead { margin: 0; color: var(--muted); font-size: 19px; line-height: 2; }
@@ -386,7 +395,12 @@ html[data-motion-ready] [data-reveal].is-visible { opacity: 1; transform: none; 
   .platform-list h3 { font-size: 19px; }
   .platform-list p { font-size: 15px; }
   .sensor-layout { display: flex; flex-direction: column-reverse; }
-  .sensor-figure { width: 100%; height: 415px; padding: 43px 28px; }
+  .sensor-figure { width: 100%; height: 415px; padding: 0; }
+  .sensor-figure::before { width: 300px; height: 300px; }
+  .sensor-figure::after { width: 360px; height: 90px; }
+  .sensor-image-wrap { inset: 8% 2%; }
+  .sensor-tech-lines::before { width: 230px; height: 230px; }
+  .sensor-tech-lines::after { width: 390px; height: 72px; }
   .sensor-copy h2 { margin-top: 35px; font-size: 42px; }
   .sensor-lead { font-size: 17px; }
   .sensor-copy dl { margin-top: 36px; }

@@ -228,7 +228,8 @@ export default function Home() {
       <section className="sensor-section">
         <div className="page-shell sensor-layout">
           <figure className="sensor-figure" data-reveal="left">
-            <img src="/assets/smoke-sensor.jpg" alt="AI大数据烟感设备" />
+            <div className="sensor-tech-lines" aria-hidden="true"><i className="sensor-node sensor-node-a" /><i className="sensor-node sensor-node-b" /><i className="sensor-node sensor-node-c" /></div>
+            <div className="sensor-image-wrap"><img src="/assets/smoke-sensor.jpg" alt="AI大数据烟感设备" /></div>
             <figcaption>智能烟感设备</figcaption>
           </figure>
             <div className="sensor-copy" data-reveal="right">
