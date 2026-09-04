@@ -36,9 +36,9 @@ img { display: block; max-width: 100%; }
 .site-nav-item:disabled { cursor: default; }
 
 /* Hero */
-.hero { position: relative; min-height: 760px; height: 100vh; max-height: 1000px; overflow: hidden; background: var(--ink); color: #fff; }
-.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(.62) contrast(1.08); animation: hero-in 1.3s cubic-bezier(.2,.7,.2,1) both; }
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(3,17,29,.97) 0%,rgba(3,17,29,.86) 43%,rgba(3,17,29,.3) 78%,rgba(3,17,29,.42) 100%),linear-gradient(0deg,rgba(3,17,29,.82),transparent 58%); }
+.hero { position: relative; min-height: 760px; height: 100vh; height: 100svh; overflow: hidden; background: var(--ink); color: #fff; }
+.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 55%; filter: saturate(.82) contrast(1.08); animation: hero-in 1.45s cubic-bezier(.2,.7,.2,1) both; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(3,17,29,.96) 0%,rgba(3,17,29,.84) 41%,rgba(3,17,29,.2) 76%,rgba(3,17,29,.34) 100%),linear-gradient(0deg,rgba(3,17,29,.88),transparent 58%); }
 .hero-inner { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
 .hero-copy { width: min(790px,68%); padding-bottom: 76px; }
 .hero-company { display: flex; align-items: center; gap: 14px; margin-bottom: 30px; color: #c2d3de; font-size: 15px; letter-spacing: .1em; }
@@ -113,6 +113,12 @@ img { display: block; max-width: 100%; }
 .operations-inner { position: relative; z-index: 2; }
 .operations-copy { display: grid; grid-template-columns: 1.08fr .92fr; gap: 128px; align-items: end; margin-top: 57px; padding-bottom: 72px; }
 .operations-copy > p { margin: 0; color: #a2b5c2; font-size: 16px; line-height: 2; }
+.operations-media { position: relative; height: 440px; margin: 0; overflow: hidden; border-top: 1px solid rgba(255,255,255,.28); }
+.operations-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg,rgba(5,24,39,.08),rgba(5,24,39,.12)),linear-gradient(0deg,rgba(5,24,39,.8),transparent 52%); }
+.operations-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 46%; filter: saturate(.72) contrast(1.06); }
+.operations-media figcaption { position: absolute; z-index: 2; left: 34px; bottom: 29px; display: flex; align-items: center; gap: 18px; }
+.operations-media figcaption span { padding-right: 18px; border-right: 1px solid rgba(255,255,255,.42); color: #8fa8b8; font-size: 12px; letter-spacing: .08em; }
+.operations-media figcaption strong { color: #fff; font-size: 16px; font-weight: 500; }
 .process-list { display: grid; grid-template-columns: repeat(6,1fr); margin: 0; padding: 0; border-top: 1px solid rgba(255,255,255,.38); border-left: 1px solid rgba(255,255,255,.25); list-style: none; }
 .process-list li { min-height: 168px; display: flex; flex-direction: column; justify-content: center; padding: 28px; border-right: 1px solid rgba(255,255,255,.25); }
 .process-list span { margin-bottom: 30px; color: #6d899c; font: 12px Arial,sans-serif; }
@@ -194,6 +200,7 @@ img { display: block; max-width: 100%; }
   .platform-content { grid-template-columns: 1fr; }
   .platform-screen { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.16); }
   .sensor-figure { height: 560px; }
+  .operations-media { height: 380px; }
   .process-list { grid-template-columns: repeat(3,1fr); }
   .metrics-list { grid-template-columns: repeat(2,1fr); }
   .metrics-list > div:nth-child(2) { border-right: 0; }
@@ -248,6 +255,10 @@ img { display: block; max-width: 100%; }
   .sensor-copy dl > div { grid-template-columns: 98px 1fr; gap: 14px; padding: 18px 0; }
   .sensor-copy dt, .sensor-copy dd { font-size: 14px; }
   .operations-copy { padding-bottom: 49px; }
+  .operations-media { height: 270px; }
+  .operations-media figcaption { left: 20px; bottom: 20px; gap: 12px; }
+  .operations-media figcaption span { padding-right: 12px; }
+  .operations-media figcaption strong { font-size: 14px; }
   .process-list { grid-template-columns: repeat(2,1fr); }
   .process-list li { min-height: 120px; padding: 20px; }
   .process-list span { margin-bottom: 19px; }

@@ -77,7 +77,7 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top">
-        <img className="hero-image" src="/assets/operations-center.jpg" alt="壹消智慧消防运营中心实景" />
+        <img className="hero-image" src="/assets/beijing-city-hero.jpg" alt="北京城市夜景" />
         <div className="hero-overlay" />
         <div className="page-shell hero-inner">
           <div className="hero-copy">
@@ -168,6 +168,10 @@ export default function Home() {
             <h2>7×24小时运营值守</h2>
             <p>专业人员负责查看报警信息、核实现场情况、通知相关人员并跟进处理结果。设备出现故障时，形成维护工单并记录维修情况。</p>
           </div>
+          <figure className="operations-media">
+            <img src="/assets/operations-center.jpg" alt="壹消智慧消防运营中心实景" />
+            <figcaption><span>运营保障</span><strong>智慧消防运营中心实景</strong></figcaption>
+          </figure>
           <ol className="process-list">
             {operationSteps.map(([number, title]) => (
               <li key={number}><span>{number}</span><strong>{title}</strong></li>
