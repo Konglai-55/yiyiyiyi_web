@@ -15,6 +15,7 @@ import {
   ScanSearch,
   ShieldCheck,
   UserRoundCheck,
+  Wrench,
 } from "lucide-react";
 
 const navItems = ["首页", "产品展示", "AI大数据烟感", "案例", "联系我们"];
@@ -23,51 +24,70 @@ const services = [
   {
     icon: MonitorCog,
     number: "01",
-    title: "智慧消防平台建设",
-    text: "统一接入消防物联设备和报警信息，为管理部门提供设备状态、报警记录和处置进度。",
+    title: "全域感知与建档",
+    text: "智能烟感、可视烟感、电气监测等终端统一接入，点位、型号和维保记录形成电子台账。",
   },
   {
     icon: RadioTower,
     number: "02",
-    title: "智能设备接入",
-    text: "支持智能烟感、电气火灾、水系统等终端接入，并建立设备档案和日常巡检记录。",
+    title: "预警研判与联动",
+    text: "告警按火警、用电隐患、设备故障、低电量等类型分级，按责任主体同步推送。",
   },
   {
     icon: Headphones,
     number: "03",
-    title: "专业代运维服务",
-    text: "提供全天值守、报警核实、人员通知、工单流转和设备维护，保障系统持续运行。",
+    title: "全周期代运维",
+    text: "值守、复核、派单、巡检、维修、回访和报告由专人持续跟进，保障系统长期运行。",
   },
 ];
 
 const platformItems = [
-  { icon: Database, title: "设备管理", text: "查看设备在线、离线、故障及运行状态" },
-  { icon: BellRing, title: "报警管理", text: "汇总报警信息并记录核实、通知和处置过程" },
-  { icon: MapPinned, title: "地图查看", text: "按区域、场所和设备位置查看消防风险" },
-  { icon: ChartNoAxesColumnIncreasing, title: "统计分析", text: "形成设备、报警、工单等日常管理数据" },
+  { icon: MapPinned, title: "全域GIS一张图", text: "所有感知点位精准落图，实时查看在线、离线、故障和告警状态" },
+  { icon: BellRing, title: "AI分级告警", text: "识别火警、用电隐患、设备故障和低电量，按风险等级推送" },
+  { icon: Database, title: "全闭环工单", text: "告警、巡检、维修线上派发，现场打卡、拍照回传并归档" },
+  { icon: ChartNoAxesColumnIncreasing, title: "安全分析研判", text: "汇总告警趋势、隐患点位、故障率和处置时效，辅助监管决策" },
+];
+
+const platformPillars = [
+  { icon: MonitorCog, label: "技防", title: "智能监测", text: "持续采集烟、火、电、温等风险信号，AI过滤环境干扰。" },
+  { icon: UserRoundCheck, label: "人防", title: "闭环值守", text: "专职人员接警、复核、研判，联动网格员和现场责任人。" },
+  { icon: ShieldCheck, label: "物防", title: "长效保障", text: "设备离线、低电量或故障自动提醒，运维团队主动巡检更换。" },
 ];
 
 const sensorItems = [
-  { icon: AlarmSmoke, title: "报警上报", text: "发现烟雾后同步向平台发送报警信息" },
-  { icon: ScanSearch, title: "远程查看", text: "在线查询设备状态、报警和故障记录" },
-  { icon: PhoneCall, title: "消息通知", text: "通过平台和电话通知相关管理人员" },
-  { icon: ClipboardCheck, title: "过程留痕", text: "完整记录报警核实与现场处置情况" },
+  { icon: AlarmSmoke, title: "多源感知", text: "可接入烟感、可视烟感、电气监测等终端，持续采集风险信号" },
+  { icon: ScanSearch, title: "精准研判", text: "平台区分火警、隐患、故障和低电量，减少误报干扰" },
+  { icon: PhoneCall, title: "多端通知", text: "通过平台、电话、短信和小程序同步触达相关责任人" },
+  { icon: ClipboardCheck, title: "台账留痕", text: "报警核实、现场处置、照片和维修结果全部线上归档" },
 ];
 
 const operationSteps = [
-  { icon: AlarmSmoke, number: "01", title: "设备报警" },
-  { icon: MonitorCog, number: "02", title: "平台接警" },
-  { icon: UserRoundCheck, number: "03", title: "人工核实" },
-  { icon: PhoneCall, number: "04", title: "通知人员" },
-  { icon: ShieldCheck, number: "05", title: "现场处置" },
-  { icon: FileCheck2, number: "06", title: "记录归档" },
+  { icon: AlarmSmoke, number: "01", title: "设备报警", detail: "终端发现烟雾、明火或异常" },
+  { icon: MonitorCog, number: "02", title: "平台接警", detail: "告警秒级上云并锁定点位" },
+  { icon: UserRoundCheck, number: "03", title: "人工复核", detail: "值守中心二次核验、分级研判" },
+  { icon: PhoneCall, number: "04", title: "联动通知", detail: "电话、短信、小程序同步触达" },
+  { icon: ShieldCheck, number: "05", title: "现场处置", detail: "就近派单，网格力量快速到场" },
+  { icon: FileCheck2, number: "06", title: "归档复盘", detail: "拍照回传，工单和台账留痕" },
+];
+
+const operationAssurances = [
+  { icon: Headphones, title: "全天候接警复核", text: "专职值守中心全年在线，自动告警与人工复核双重把关。" },
+  { icon: PhoneCall, title: "多角色联动触达", text: "同步联动街道、社区网格、物业安保、场所负责人和微型消防站。" },
+  { icon: Wrench, title: "工单闭环督办", text: "未处置工单持续跟进，设备故障主动派单，维修结果线上归档。" },
+];
+
+const serviceMode = [
+  { icon: RadioTower, number: "01", title: "硬件设备部署", text: "智能烟感、可视烟感、电气监测等终端构成消防数据采集底座。" },
+  { icon: MonitorCog, number: "02", title: "壹消云平台管控", text: "GIS地图统一展示设备状态、警情信息和处置进度，支持远程调度。" },
+  { icon: Headphones, number: "03", title: "7×24小时值守", text: "专业团队全天候接警、复核和通知，保障每条告警有人响应。" },
+  { icon: ShieldCheck, number: "04", title: "全周期代运维", text: "定期巡检、故障维修、耗材更换和系统养护由专人持续负责。" },
 ];
 
 const metrics = [
-  { icon: RadioTower, value: "989", unit: "台", label: "智能烟感设备" },
-  { icon: HeartHandshake, value: "520", unit: "位", label: "重点老人守护" },
-  { icon: Flame, value: "122", unit: "起", label: "火警及时处置" },
-  { icon: AlarmSmoke, value: "13", unit: "起", label: "锅烧干隐患预警" },
+  { icon: RadioTower, value: "989", unit: "台", label: "智能烟感设备", detail: "现有项目资料披露的设备部署规模" },
+  { icon: HeartHandshake, value: "520", unit: "位", label: "重点老人守护", detail: "纳入独居及重点人群安全守护" },
+  { icon: Flame, value: "122", unit: "起", label: "火警及时处置", detail: "项目运行资料中的火警处置记录" },
+  { icon: AlarmSmoke, value: "13", unit: "起", label: "锅烧干隐患预警", detail: "通过设备及时发现的居家风险" },
 ];
 
 const cases = [
@@ -75,20 +95,26 @@ const cases = [
     image: "/assets/dashilan.jpg",
     location: "北京市西城区",
     title: "大栅栏街道",
-    text: "历史街区智慧消防感知与运营服务",
+    scene: "历史文化街区 · 老旧平房院落 · 胡同商铺",
+    service: "设备统一建档、常态化巡检、故障维修与7×24小时值守",
+    result: "设备在线率提升至99%以上",
     featured: true,
   },
   {
     image: "/assets/tianqiao.jpg",
     location: "北京市西城区",
     title: "天桥街道",
-    text: "社区消防预警与重点人群安全服务",
+    scene: "老旧院落 · 独居老人 · 九小场所",
+    service: "智能烟感部署、告警核查、故障更换与隐患闭环",
+    result: "形成社区消防托管运维机制",
   },
   {
     image: "/assets/handan-school.jpg",
     location: "河北省邯郸市",
     title: "教育系统",
-    text: "校园重点单位消防安全管理",
+    scene: "中小学 · 幼儿园 · 教室宿舍食堂",
+    service: "校园云哨兵设备接入、平台监测和专人运维",
+    result: "覆盖重点区域，保障校园安全运营",
   },
 ];
 
@@ -113,7 +139,7 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top">
-        <img className="hero-image" src="/assets/beijing-city-hero.jpg" alt="北京城市夜景" />
+        <img className="hero-image" src="/assets/command-center-hero.jpg" alt="西城区大栅栏街道智慧消防与交通治理安全沙盘实景" />
         <div className="hero-overlay" />
         <div className="page-shell hero-inner">
           <div className="hero-copy">
@@ -123,10 +149,10 @@ export default function Home() {
             <div className="hero-product"><RadioTower aria-hidden="true" />壹消智慧火灾预警运维云平台</div>
           </div>
           <div className="hero-facts">
-            <div><span>服务对象</span><strong>政府 · 街道 · 社区</strong></div>
-            <div><span>服务内容</span><strong>平台 · 设备 · 运维</strong></div>
-            <div><span>值守时间</span><strong>7 × 24 小时</strong></div>
-            <a href="#company">了解企业与服务<span aria-hidden="true">↓</span></a>
+            <div><span>服务对象</span><strong>政府 · 街道 · 社区 · 重点单位</strong></div>
+            <div><span>服务模式</span><strong>设备部署 + 平台管控 + 代运维</strong></div>
+            <div><span>响应机制</span><strong>秒级预警 · 分钟处置</strong></div>
+            <a href="#company">查看完整服务体系<span aria-hidden="true">↓</span></a>
           </div>
         </div>
       </section>
@@ -135,10 +161,10 @@ export default function Home() {
         <div className="page-shell">
           <div className="section-number"><span>01</span><b>关于企业</b></div>
           <div className="company-intro">
-            <h2>我们不只建设系统<br />也负责系统长期运行</h2>
+            <h2>深耕城市基层消防治理<br />提供全周期运营服务</h2>
             <div>
-              <p>壹壹壹壹（北京）安全技术有限公司专注于智慧消防建设与运营服务。公司通过“壹消”平台连接消防设备、管理人员和现场处置人员，为基层消防安全管理提供持续的技术与运营支持。</p>
-              <p>服务覆盖平台部署、终端接入、日常值守、报警核实、设备维护和数据统计，帮助管理单位及时掌握设备状态和事件处置情况。</p>
+              <p>壹壹壹壹（北京）安全技术有限公司是一家深耕城市基层智慧消防治理、专注全周期消防代运维托管的技术服务企业。公司聚焦老旧街巷、历史街区、九小场所、校园教育、老旧小区和独居居家等消防管理薄弱场景，自主搭建壹消智慧火灾预警运维云平台。</p>
+              <p>区别于单一硬件销售，公司把智慧消防搭建、7×24小时云端值守和全域落地代运维连成一条服务链，持续解决设备有人装、报警有人应、故障有人修的问题。</p>
             </div>
           </div>
           <div className="service-list">
@@ -160,8 +186,14 @@ export default function Home() {
         <div className="page-shell">
           <div className="section-number"><span>02</span><b>壹消平台</b></div>
           <div className="platform-heading">
-            <h2>设备、报警和处置进度<br />在一个平台统一管理</h2>
-            <p>平台面向政府、街道和项目管理人员使用，集中查看辖区内消防设备状态、报警信息、处置工单和统计数据。</p>
+            <h2>从感知到处置<br />把消防安全纳入日常管理</h2>
+            <p>壹消平台依托物联网感知、AI智能算法和大数据GIS可视化技术，为政府、街道和项目管理人员提供设备监控、风险研判、联动处置和运维台账。</p>
+          </div>
+          <div className="platform-pillars">
+            {platformPillars.map((pillar) => {
+              const Icon = pillar.icon;
+              return <article key={pillar.label}><Icon aria-hidden="true" /><span>{pillar.label}</span><h3>{pillar.title}</h3><p>{pillar.text}</p></article>;
+            })}
           </div>
           <div className="platform-content">
             <figure className="platform-screen">
@@ -189,10 +221,10 @@ export default function Home() {
             <img src="/assets/smoke-sensor.jpg" alt="AI大数据烟感设备" />
             <figcaption>智能烟感设备</figcaption>
           </figure>
-          <div className="sensor-copy">
-            <div className="section-number"><span>03</span><b>智能终端</b></div>
-            <h2>AI大数据烟感</h2>
-            <p className="sensor-lead">烟感报警后，信息同步上传至壹消平台。值守人员可及时核实情况，并通知现场相关人员处理。</p>
+            <div className="sensor-copy">
+              <div className="section-number"><span>03</span><b>智能终端</b></div>
+            <h2>AI大数据烟感<br />与多维风险感知</h2>
+            <p className="sensor-lead">烟感只是感知网络的入口。平台可接入烟感、可视烟感、电气监测等终端，持续采集烟、火、电、温等风险信号，再由值守人员核实并推动现场处置。</p>
             <dl>
               {sensorItems.map((item) => {
                 const Icon = item.icon;
@@ -207,8 +239,14 @@ export default function Home() {
         <div className="page-shell operations-inner">
           <div className="section-number light"><span>04</span><b>代运维服务</b></div>
           <div className="operations-copy">
-            <h2>7×24小时运营值守</h2>
-            <p>专业人员负责查看报警信息、核实现场情况、通知相关人员并跟进处理结果。设备出现故障时，形成维护工单并记录维修情况。</p>
+            <h2>7×24小时人工值守<br />确保每一次告警有人响应</h2>
+            <p>自建专属值守中心，自动告警与人工复核双重把关。告警触发后，值守人员完成核验、分级研判、责任人通知和工单跟进；设备离线、低电量或故障时，平台自动提醒并派发维修任务。</p>
+          </div>
+          <div className="operation-assurances">
+            {operationAssurances.map((item) => {
+              const Icon = item.icon;
+              return <article key={item.title}><Icon aria-hidden="true" /><h3>{item.title}</h3><p>{item.text}</p></article>;
+            })}
           </div>
           <figure className="operations-media">
             <img src="/assets/operations-center.jpg" alt="壹消智慧消防运营中心实景" />
@@ -217,34 +255,52 @@ export default function Home() {
           <ol className="process-list">
             {operationSteps.map((step) => {
               const Icon = step.icon;
-              return <li key={step.number}><div><Icon aria-hidden="true" /><span>{step.number}</span></div><strong>{step.title}</strong></li>;
+              return <li key={step.number}><div><Icon aria-hidden="true" /><span>{step.number}</span></div><strong>{step.title}</strong><small>{step.detail}</small></li>;
             })}
           </ol>
         </div>
       </section>
 
+      <section className="mode-section">
+        <div className="page-shell">
+          <div className="section-number"><span>05</span><b>整体服务模式</b></div>
+          <div className="mode-heading">
+            <h2>一体化全包服务<br />让甲方少操心、能验收</h2>
+            <p>硬件设备部署、壹消云平台管控、7×24小时人工值守和全周期代运维协同运行。甲方无需另行配备专职值守人员，也无需自行对接维修和整理台账。</p>
+          </div>
+          <div className="mode-grid">
+            {serviceMode.map((item) => {
+              const Icon = item.icon;
+              return <article key={item.number}><div className="mode-mark"><span>{item.number}</span><Icon aria-hidden="true" /></div><h3>{item.title}</h3><p>{item.text}</p></article>;
+            })}
+          </div>
+          <div className="mode-footnote"><strong>服务结果</strong><span>消防安全智能化、常态化、标准化、闭环化管理</span></div>
+        </div>
+      </section>
+
       <section className="results-section">
         <div className="page-shell">
-          <div className="section-number"><span>05</span><b>项目运行情况</b></div>
+          <div className="section-number"><span>06</span><b>项目运行情况</b></div>
           <div className="results-heading">
-            <h2>部分项目运行数据</h2>
-            <p>以下数据整理自公司现有项目资料及媒体报道。</p>
+            <h2>项目运行数据<br />对应真实的服务结果</h2>
+            <p>以下数据整理自公司现有项目资料及媒体报道，用于说明设备规模、重点人群守护和典型风险处置情况。</p>
           </div>
           <div className="metrics-list">
             {metrics.map((metric) => {
               const Icon = metric.icon;
-              return <div key={metric.label}><Icon aria-hidden="true" /><strong>{metric.value}<sup>{metric.unit}</sup></strong><span>{metric.label}</span></div>;
+              return <div key={metric.label}><Icon aria-hidden="true" /><strong>{metric.value}<sup>{metric.unit}</sup></strong><span>{metric.label}</span><small>{metric.detail}</small></div>;
             })}
           </div>
+          <p className="results-note">数据来源：公司项目资料及相关媒体报道，具体项目数据以合同、验收和运维报告为准。</p>
         </div>
       </section>
 
       <section className="cases-section">
         <div className="page-shell">
-          <div className="section-number"><span>06</span><b>服务案例</b></div>
+          <div className="section-number"><span>07</span><b>服务案例</b></div>
           <div className="cases-heading">
-            <h2>典型服务项目</h2>
-            <p>服务场景包括街道社区、历史街区和教育系统等。</p>
+            <h2>落地项目与服务场景</h2>
+            <p>不是简单部署设备，而是围绕不同区域的管理难题建立长期运维机制。</p>
           </div>
           <div className="cases-grid">
             {cases.map((item, index) => (
@@ -255,7 +311,9 @@ export default function Home() {
                 <div className="case-copy">
                   <span>{item.location}</span>
                   <h3>{item.title}</h3>
-                  <p>{item.text}</p>
+                  <p className="case-scene">{item.scene}</p>
+                  <p className="case-service"><b>服务内容</b>{item.service}</p>
+                  <p className="case-result"><b>运行结果</b>{item.result}</p>
                 </div>
               </article>
             ))}
