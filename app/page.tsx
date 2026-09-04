@@ -145,10 +145,19 @@ export default function Home() {
         <div className="page-shell hero-inner">
           <div className="hero-copy">
             <span className="hero-company" data-reveal="left" data-delay="1">壹壹壹壹（北京）安全技术有限公司</span>
-            <h1 data-reveal="left" data-delay="2">城市基层消防安全<br />智慧运营服务</h1>
+            <h1 data-reveal="left" data-delay="2">城市基层消防安全<br /><span className="hero-title-accent">智慧运营服务</span></h1>
             <p data-reveal="left" data-delay="3">面向政府、街道、社区及重点单位，提供平台建设、智能设备接入和7×24小时专业运维服务。</p>
             <div className="hero-product" data-reveal="left" data-delay="4"><RadioTower aria-hidden="true" />壹消智慧火灾预警运维云平台</div>
+            <div className="hero-actions" data-reveal="left" data-delay="5">
+              <a className="hero-action-primary" href="#company">了解服务体系 <span aria-hidden="true">↗</span></a>
+              <a className="hero-action-secondary" href="#platform">查看平台能力 <span aria-hidden="true">→</span></a>
+            </div>
           </div>
+          <aside className="hero-side-note" data-reveal="right" data-delay="4" aria-label="城市消防安全运营说明">
+            <span>城市消防安全运营</span>
+            <strong>从预警到处置<br />每一步都有响应</strong>
+            <p>全域感知、分级研判、联动处置，形成可追溯的基层消防安全闭环。</p>
+          </aside>
           <div className="hero-facts">
             <div data-reveal="up" data-delay="2"><span>服务对象</span><strong>政府 · 街道 · 社区 · 重点单位</strong></div>
             <div data-reveal="up" data-delay="3"><span>服务模式</span><strong>设备部署 + 平台管控 + 代运维</strong></div>
@@ -183,7 +192,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="platform-section">
+      <section className="platform-section" id="platform">
         <div className="page-shell">
           <div className="section-number" data-reveal="up"><span>02</span><b>壹消平台</b></div>
           <div className="platform-heading" data-reveal="up" data-delay="1">
