@@ -11,27 +11,47 @@ export default function RevealObserver() {
   useEffect(() => {
     document.documentElement.dataset.motionReady = "true";
 
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
-    if (nodes.length === 0) return;
+    const supportsIntersectionObserver = "IntersectionObserver" in window;
+    const revealImmediately = (node: HTMLElement) => node.classList.add("is-visible");
 
-    if (!("IntersectionObserver" in window)) {
-      nodes.forEach((node) => node.classList.add("is-visible"));
-      return;
-    }
+    const observer = supportsIntersectionObserver
+      ? new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+        )
+      : null;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+    const watch = (node: HTMLElement) => {
+      if (node.classList.contains("is-visible")) return;
+      if (observer) observer.observe(node);
+      else revealImmediately(node);
+    };
+
+    document.querySelectorAll<HTMLElement>("[data-reveal]").forEach(watch);
+
+    // Client components can stream in after this effect (for example the
+    // case showcase). Observe new nodes too so they never remain transparent.
+    const mutations = new MutationObserver((records) => {
+      records.forEach((record) => {
+        record.addedNodes.forEach((addedNode) => {
+          if (!(addedNode instanceof HTMLElement)) return;
+          if (addedNode.matches("[data-reveal]")) watch(addedNode);
+          addedNode.querySelectorAll<HTMLElement>("[data-reveal]").forEach(watch);
         });
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
-    );
+      });
+    });
+    mutations.observe(document.body, { childList: true, subtree: true });
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
+    return () => {
+      observer?.disconnect();
+      mutations.disconnect();
+    };
   }, []);
 
   return null;
