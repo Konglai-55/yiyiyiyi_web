@@ -1,0 +1,36 @@
+.corporate .site-hero-line { display:block!important; overflow:visible!important; }
+.corporate .site-hero-reveal { overflow:hidden!important; padding-bottom:.08em; margin-bottom:-.08em; }
+/* ShinyText's clipped gradient, adapted to a single post-reveal sweep. */
+.corporate .site-hero-reveal.has-shone .split-line {
+  background-image:linear-gradient(110deg,currentColor 0%,currentColor 44%,#effdff 49%,#b9f0ff 51%,currentColor 56%,currentColor 100%);
+  background-size:250% 100%;
+  background-position:100% 50%;
+  background-clip:text;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:site-title-shine 1.15s ease-in-out .08s 1 both;
+}
+@keyframes site-title-shine { from { background-position:100% 50%; } to { background-position:0% 50%; } }
+.corporate .c-hero.is-ready .c-hero-status { animation:site-status-reveal .65s ease-out .08s both; }
+.c-hero-status::before { content:''; width:26px; height:2px; flex-shrink:0; background:var(--red); transform-origin:left; }
+.c-hero.is-ready .c-hero-status::before { animation:site-status-line .4s ease-out both; }
+@keyframes site-status-line { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes site-status-reveal { from { clip-path:inset(0 100% 0 0); opacity:0; } to { clip-path:inset(0); opacity:1; } }
+.corporate .c-hero.is-ready .c-hero-intro { animation:site-support-reveal .7s cubic-bezier(.2,.8,.2,1) 1.05s both; }
+.corporate .c-hero.is-ready .c-actions { animation:site-support-reveal .7s cubic-bezier(.2,.8,.2,1) 1.25s both; }
+@keyframes site-support-reveal { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@media(prefers-reduced-motion:reduce) {
+ .corporate .site-hero-reveal.has-shone .split-line { animation:none; background:none; -webkit-text-fill-color:currentColor; }
+ .c-hero-status, .c-hero-status::before { animation:none!important; clip-path:none!important; }
+}
+.corporate .site-image-reveal { min-width:0; }
+.corporate .site-image-reveal img { display:block; width:100%; }
+.corporate .site-product-spotlight { height:100%; padding:0; border:0; border-radius:0; background:transparent; }
+.corporate .site-product-spotlight::before { z-index:2; }
+.corporate .site-product-spotlight:not(.is-enabled)::before { display:none; }
+.corporate .site-product-spotlight > article { height:100%; }
+.corporate .p-device-list article { position:relative; isolation:isolate; }
+.corporate .p-device-list .site-product-spotlight { position:absolute; inset:0; width:100%; height:100%; z-index:0; }
+.corporate .p-device-list article > svg, .corporate .p-device-list article > div:not(.site-product-spotlight) { position:relative; z-index:1; pointer-events:none; }
+.corporate .c-hero h1 em .site-hero-line { font-size:inherit; }
+@media(prefers-reduced-motion:reduce) { .corporate .site-product-spotlight::before { display:none; } }

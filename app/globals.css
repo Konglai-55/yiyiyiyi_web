@@ -3,6 +3,14 @@
 @import "shadcn/tailwind.css";
 
 :root {
+  --corporate-bg: #080f19;
+  --corporate-surface: #0d1925;
+  --corporate-heading: #f2f0eb;
+  --corporate-text: #c4ced7;
+  --corporate-muted: #9faebb;
+  --corporate-accent: #8cbadb;
+  --corporate-red: #ee8589;
+  --corporate-line: #293b4b;
   --ink: #071a2b;
   --navy: #0a263d;
   --blue: #176a9c;
@@ -40,9 +48,9 @@ img[data-lightbox]:focus-visible { outline: 3px solid rgba(116,190,224,.9); outl
 
 /* Hero */
 .hero { position: relative; min-height: 760px; height: 100vh; height: 100svh; overflow: hidden; background: var(--ink); color: #fff; }
-.hero::before { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(115deg, #061a2c 0%, #0a2941 42%, rgba(7,26,43,.58) 100%); animation: hero-curtain 1.42s cubic-bezier(.76,0,.2,1) .08s both; }
-.hero::after { content: ""; position: absolute; top: 0; left: 0; z-index: 4; width: 100%; height: 2px; pointer-events: none; opacity: 0; background: linear-gradient(90deg, transparent, rgba(139,214,245,.86) 48%, transparent); box-shadow: 0 0 20px rgba(87,190,232,.48); animation: hero-scan 1.5s cubic-bezier(.35,.04,.2,1) .34s both; }
-.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 10%; filter: blur(2.4px) saturate(.82) contrast(1.08); transform: scale(1.085); animation: hero-in 2.1s cubic-bezier(.16,.74,.2,1) both; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(circle at 74% 38%, rgba(78,163,202,.16), transparent 24%), linear-gradient(115deg, rgba(3,17,29,.68), rgba(7,26,43,.1) 58%, rgba(7,26,43,.22)); transform: scale(1.02); animation: hero-atmosphere 1.42s cubic-bezier(.2,.7,.2,1) both; }
+.hero::after { display: none; }
+.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 10%; filter: blur(2.4px) saturate(.82) contrast(1.08); transform: scale(1.045); animation: hero-in 1.55s cubic-bezier(.16,.74,.2,1) both; }
 .hero-overlay { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 78% 38%, rgba(46,102,142,.16), transparent 32%), linear-gradient(90deg,rgba(3,17,29,.96) 0%,rgba(3,17,29,.82) 38%,rgba(3,17,29,.3) 72%,rgba(3,17,29,.32) 100%),linear-gradient(0deg,rgba(3,17,29,.92),transparent 56%); }
 .hero-image[data-lightbox]:hover { filter: blur(2.4px) saturate(.9) contrast(1.08) brightness(1.05); transform: scale(1.035); }
 .hero-inner { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-start; }
@@ -106,10 +114,10 @@ html[data-motion-ready] [data-reveal="scale"] { transform: scale(.965); }
 html[data-motion-ready] [data-reveal].is-visible { opacity: 1; transform: none; }
 
 /* Hero opening sequence */
-html[data-hero-intro] .site-header[data-reveal] { animation: hero-header-in .9s cubic-bezier(.2,.7,.2,1) .26s both; }
-html[data-hero-intro] .hero-copy > [data-reveal] { animation: hero-content-in .88s cubic-bezier(.2,.7,.2,1) calc(420ms + var(--reveal-delay, 0ms)) both; }
-html[data-hero-intro] .hero-side-note { animation: hero-content-in .9s cubic-bezier(.2,.7,.2,1) 760ms both; }
-html[data-hero-intro] .hero-facts > [data-reveal] { animation: hero-facts-in .8s cubic-bezier(.2,.7,.2,1) calc(1100ms + var(--reveal-delay, 0ms)) both; }
+html[data-hero-intro] .site-header[data-reveal] { animation: hero-header-in .78s cubic-bezier(.2,.7,.2,1) .18s both; }
+html[data-hero-intro] .hero-copy > [data-reveal] { animation: hero-content-in .78s cubic-bezier(.2,.7,.2,1) calc(350ms + var(--reveal-delay, 0ms)) both; }
+html[data-hero-intro] .hero-side-note { animation: hero-content-in .78s cubic-bezier(.2,.7,.2,1) 650ms both; }
+html[data-hero-intro] .hero-facts > [data-reveal] { animation: hero-facts-in .72s cubic-bezier(.2,.7,.2,1) calc(880ms + var(--reveal-delay, 0ms)) both; }
 
 /* Company */
 .company-section { padding: 150px 0 138px; background: #fff; }
@@ -326,12 +334,11 @@ html[data-hero-intro] .hero-facts > [data-reveal] { animation: hero-facts-in .8s
 .footer-contact > small { margin-top: 13px; color: #78919f; font-size: 14px; }
 .footer-bottom { position: relative; z-index: 1; min-height: 72px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.12); color: #6f8694; font-size: 14px; }
 
-@keyframes hero-in { from { opacity: .08; filter: blur(11px) saturate(.58) contrast(1.02); transform: scale(1.09); } to { opacity: 1; filter: blur(2.4px) saturate(.82) contrast(1.08); transform: scale(1.02); } }
-@keyframes hero-curtain { 0% { opacity: 1; transform: translateX(0); } 72% { opacity: .92; transform: translateX(0); } 100% { opacity: 0; transform: translateX(100%); } }
-@keyframes hero-scan { 0% { opacity: 0; transform: translateY(-8vh); } 13% { opacity: .8; } 76% { opacity: .32; } 100% { opacity: 0; transform: translateY(108vh); } }
-@keyframes hero-header-in { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes hero-content-in { from { opacity: 0; transform: translate3d(0,24px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
-@keyframes hero-facts-in { from { opacity: 0; transform: translate3d(0,16px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+@keyframes hero-in { from { opacity: .42; filter: blur(8px) saturate(.68) contrast(1.04); transform: scale(1.045); } to { opacity: 1; filter: blur(2.4px) saturate(.82) contrast(1.08); transform: scale(1.02); } }
+@keyframes hero-atmosphere { from { opacity: .72; transform: scale(1.02); } to { opacity: 0; transform: scale(1); } }
+@keyframes hero-header-in { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes hero-content-in { from { opacity: 0; transform: translate3d(0,12px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
+@keyframes hero-facts-in { from { opacity: 0; transform: translate3d(0,12px,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
 
 @media (max-width: 1160px) {
   .page-shell { width: min(100% - 80px,1120px); }
