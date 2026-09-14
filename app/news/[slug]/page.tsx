@@ -1,20 +1,31 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import NewsShell from '@/components/news-shell';
-import { getNews, listNews } from '@/lib/news-store';
+import { newsArticles as bundledNews, newsDate as bundledNewsDate, type NewsArticle } from '@/lib/news';
 export const dynamic='force-dynamic';
 
 type Props = { params: Promise<{ slug: string }> };
+type PublicNewsArticle = NewsArticle & { cover: string; publishedAt: string };
+async function availableNews(slug: string): Promise<{ article: PublicNewsArticle | null; related: PublicNewsArticle[] }> {
+  try {
+    const { getNews, listNews } = await import('@/lib/news-store');
+    const article = await getNews(slug);
+    return { article, related: article ? await listNews() : [] };
+  } catch (error) {
+    console.error('News storage unavailable; serving bundled article', error);
+    const related = bundledNews.map(item => ({ ...item, cover: '', publishedAt: bundledNewsDate }));
+    return { article: related.find(item => item.slug === slug) ?? null, related };
+  }
+}
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = await getNews(slug);
+  const { article } = await availableNews(slug);
   return article ? { title: `${article.title}｜新闻资讯｜壹壹壹壹`, description: article.summary } : { title: '文章未找到' };
 }
 export default async function NewsDetail({ params }: Props) {
   const { slug } = await params;
-  const article = await getNews(slug);
+  const { article, related: newsArticles } = await availableNews(slug);
   if (!article) notFound();
-  const newsArticles = await listNews();
   const newsDate = article.publishedAt;
   return <NewsShell>
     <header className="news-article-header c-shell"><nav aria-label="面包屑"><a href="/">首页</a><span>/</span><a href="/news">新闻资讯</a><span>/</span><span>{article.category}</span></nav><p className="news-kicker">{article.category}</p><h1>{article.title}</h1><div className="news-byline">壹壹壹壹网站编辑整理 <span>发布于 <time dateTime={newsDate}>{newsDate}</time></span></div></header>

@@ -1,14 +1,21 @@
 import type { Metadata } from 'next';
 import { ArrowUpRight } from 'lucide-react';
 import NewsShell from '@/components/news-shell';
-import { listNews } from '@/lib/news-store';
+import { newsArticles as bundledNews, newsDate, type NewsArticle } from '@/lib/news';
 export const dynamic='force-dynamic';
+type PublicNewsArticle = NewsArticle & { cover: string; publishedAt: string };
 
 export const metadata: Metadata = { title: '新闻资讯｜智慧消防行业解读与安全科普｜壹壹壹壹', description: '关注智慧消防建设、烟感设备、校园与社区安全、消防控制室数字化管理。基于公开资料整理的行业解读与实用信息。' };
 
 export default async function NewsPage() {
-  let newsArticles;
-  try {newsArticles=await listNews();}catch{return <NewsShell><section className="news-intro c-shell"><h1>新闻资讯</h1><p>资讯暂时无法加载，请稍后刷新重试。</p><a href="/news">重新加载</a></section></NewsShell>;}
+  let newsArticles: PublicNewsArticle[];
+  try {
+    const { listNews } = await import('@/lib/news-store');
+    newsArticles = await listNews();
+  } catch (error) {
+    console.error('News storage unavailable; serving bundled articles', error);
+    newsArticles = bundledNews.map(article => ({ ...article, cover: '', publishedAt: newsDate }));
+  }
   const featured = newsArticles[0];
   return <NewsShell>
     <section className="news-intro c-shell"><p className="news-kicker">行业动态与消防知识</p><h1>新闻资讯</h1><p>关注智慧消防的应用与管理，了解设备、平台及日常防范工作。</p></section>
