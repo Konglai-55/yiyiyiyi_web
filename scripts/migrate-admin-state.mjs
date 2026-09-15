@@ -1,0 +1,23 @@
+// Copies non-news state from a local D1 export, preserving existing target records.
+import {DatabaseSync} from 'node:sqlite';
+import {resolve,join,isAbsolute} from 'node:path';
+import {mkdir} from 'node:fs/promises';
+import {register} from 'node:module';
+register('./typescript-loader.mjs',import.meta.url);
+const source=process.argv[2];
+const dir=process.env.ADMIN_DATA_DIR;
+if(!source||!dir||!isAbsolute(dir))throw new Error('Usage: ADMIN_DATA_DIR=<absolute persistent dir> node scripts/migrate-admin-state.mjs <legacy sqlite>');
+if(resolve(source)===resolve(join(dir,'admin.sqlite')))throw new Error('Source and target must differ');
+const {db}=await import('../lib/server-env.ts');
+const target=await db();
+const legacy=new DatabaseSync(source,{readOnly:true});
+await mkdir('.private/admin-migration',{recursive:true});
+const snapshot=resolve(`.private/admin-migration/legacy-${Date.now()}.sqlite`).replaceAll("'","''");
+legacy.exec(`VACUUM INTO '${snapshot}'`);
+const views=legacy.prepare('SELECT * FROM page_views').all();
+const setting=legacy.prepare("SELECT value FROM settings WHERE key='admin_password_hash'").get();
+const statements=views.map(v=>target.prepare('INSERT OR IGNORE INTO page_views(id,day,path,visitor,device,referrer,created) VALUES (?,?,?,?,?,?,?)').bind(v.id,v.day,v.path,v.visitor,v.device,v.referrer,v.created));
+if(setting)statements.push(target.prepare("INSERT OR IGNORE INTO settings(key,value) VALUES ('admin_password_hash',?)").bind(setting.value));
+await target.batch(statements);
+legacy.close();
+console.log(`Copied up to ${views.length} historical views and preserved password setting if present. Existing target data unchanged; old sessions not imported.`);

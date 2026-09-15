@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 const origin=process.env.TEST_ORIGIN||'http://127.0.0.1:3000';
-const password=(await readFile('.private/后台登录.txt','utf8')).match(/初始密码：([^\r\n]+)/)[1];
+const password=process.env.TEST_ADMIN_PASSWORD||(await readFile('.private/后台登录.txt','utf8')).match(/初始密码：([^\r\n]+)/)[1];
 let cookie='';
 async function req(path,method='GET',body,authenticated=true,extra={}){
-  return fetch(origin+path,{method,headers:{Origin:origin,...(authenticated&&cookie?{Cookie:cookie}:{}),...(body?{'Content-Type':'application/json'}:{}),...extra},body:body?JSON.stringify(body):undefined});
+  return fetch(origin+path,{method,headers:{Origin:origin,...(authenticated&&cookie?{Cookie:cookie}:{}),...(body?{'Content-Type':'application/json'}:{}),...extra},...(method!=='GET'&&body?{body:JSON.stringify(body)}:{})});
 }
 assert.equal((await req('/api/admin/news','GET',undefined,false)).status,401);
 assert.equal((await req('/api/admin/login','POST',{password},false,{Origin:'https://untrusted.example'})).status,403);
@@ -12,9 +12,9 @@ const login=await req('/api/admin/login','POST',{password});
 if(login.status!==200) throw new Error(`Login: ${login.status} ${await login.text()}`);
 cookie=login.headers.get('set-cookie').split(';')[0];
 assert.match(login.headers.get('set-cookie'),/HttpOnly/);
-let result=await req('/api/admin/news');assert.equal(result.status,200);
+const result=await req('/api/admin/news');assert.equal(result.status,200);
 const articles=(await result.json()).articles;assert.ok(articles.length>=5);
-console.log('PASS authentication, CSRF rejection, initial article import');
+console.log('PASS authentication, CSRF rejection, object-storage article list');
 const slug='qa-check-'+Date.now();
 let article={slug,title:'临时功能验收文章',category:'测试',summary:'验收结束自动删除',sections:[{title:'测试段落',text:'仅用于本地验收。'}],source:{title:'',publisher:'',url:''},cover:'',status:'draft',publishedAt:new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Shanghai'})};
 try{

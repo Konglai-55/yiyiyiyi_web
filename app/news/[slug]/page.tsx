@@ -1,22 +1,15 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import NewsShell from '@/components/news-shell';
-import { newsArticles as bundledNews, newsDate as bundledNewsDate, type NewsArticle } from '@/lib/news';
+import { listNews, type ManagedArticle } from '@/lib/news-store';
+import { cache } from 'react';
 export const dynamic='force-dynamic';
 
 type Props = { params: Promise<{ slug: string }> };
-type PublicNewsArticle = NewsArticle & { cover: string; publishedAt: string };
-async function availableNews(slug: string): Promise<{ article: PublicNewsArticle | null; related: PublicNewsArticle[] }> {
-  try {
-    const { getNews, listNews } = await import('@/lib/news-store');
-    const article = await getNews(slug);
-    return { article, related: article ? await listNews() : [] };
-  } catch (error) {
-    console.error('News storage unavailable; serving bundled article', error);
-    const related = bundledNews.map(item => ({ ...item, cover: '', publishedAt: bundledNewsDate }));
-    return { article: related.find(item => item.slug === slug) ?? null, related };
-  }
-}
+const availableNews = cache(async (slug: string): Promise<{article:ManagedArticle|null;related:ManagedArticle[]}> => {
+  const related=await listNews();
+  return {article:related.find(a=>a.slug===slug)??null,related};
+});
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const { article } = await availableNews(slug);
