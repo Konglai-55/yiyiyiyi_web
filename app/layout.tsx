@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     images: [{url: '/assets/smart-city-hero-desktop-refined.webp', width: 1920, height: 1080, alt: '壹消智慧消防城市安全平台'}],
   },
   twitter: { card: 'summary_large_image', title: '壹消智慧消防｜城市基层智慧消防运营服务商', description: '智慧消防平台、智能感知设备与专业代运维服务。', images: ['/assets/smart-city-hero-desktop-refined.webp'] },
+  verification: { other: { 'baidu-site-verification': 'codeva-DW4XtVHUwQ' } },
 };
 
 const organization = {
