@@ -4,7 +4,7 @@ import NewsShell from '@/components/news-shell';
 import { listNews } from '@/lib/news-store';
 export const dynamic='force-dynamic';
 
-export const metadata: Metadata = { title: '新闻资讯｜智慧消防行业解读与安全科普｜壹壹壹壹', description: '关注智慧消防建设、烟感设备、校园与社区安全、消防控制室数字化管理。基于公开资料整理的行业解读与实用信息。' };
+export const metadata: Metadata = { title: '新闻资讯｜智慧消防行业解读与安全科普｜壹壹壹壹', description: '关注智慧消防建设、烟感设备、校园与社区安全、消防控制室数字化管理。基于公开资料整理的行业解读与实用信息。', alternates: {canonical:'/news'}, openGraph: {title:'新闻资讯｜智慧消防行业解读与安全科普｜壹壹壹壹',description:'关注智慧消防建设、烟感设备、校园与社区安全、消防控制室数字化管理。',url:'/news',type:'website'} };
 
 export default async function NewsPage() {
   const newsArticles = await listNews();

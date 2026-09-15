@@ -10,14 +10,16 @@ export function generateStaticParams() { return projects.map(({ slug }) => ({ sl
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find(item => item.slug === slug);
-  return project ? { title: `${project.title}｜项目案例｜壹消智慧消防`, description: project.intro } : { title: '案例未找到' };
+  return project ? { title: `${project.title}｜项目案例｜壹消智慧消防`, description: project.intro, alternates: { canonical: `/cases/${project.slug}` }, openGraph: { type: 'article', url: `/cases/${project.slug}`, title: project.title, description: project.intro, images: [project.image] } } : { title: '案例未找到' };
 }
 
 export default async function CaseDetail({ params }: Props) {
   const { slug } = await params;
   const project = projects.find(item => item.slug === slug);
   if (!project) notFound();
+  const jsonLd = { '@context': 'https://schema.org', '@type': 'Article', headline: project.title, description: project.intro, author: { '@id': 'https://yiyiyiyi.xn--fiqs8s/#organization' }, publisher: { '@id': 'https://yiyiyiyi.xn--fiqs8s/#organization' }, mainEntityOfPage: `https://yiyiyiyi.xn--fiqs8s/cases/${project.slug}`, image: project.image };
   return <NewsShell section="cases">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
     <header className="case-heading c-shell">
       <nav aria-label="面包屑"><a href="/">首页</a><span>/</span><a href="/#projects">项目案例</a><span>/</span><span>{project.location}</span></nav>
       <p className="case-location">{project.location}</p><h1>{project.title}</h1>
