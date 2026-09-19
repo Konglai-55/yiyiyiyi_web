@@ -86,7 +86,7 @@ export default function SmokeProductDetail() {
           <div className="smoke-heading"><h2>AI 智能火情识别<br />与分级上报</h2><p>设备支持五类异常告警；在此基础上，AI 方案配置本地识别逻辑与数据预处理，标记告警类别和优先级，将火情核实、设备维护分别纳入对应通知流程。</p></div>
           <div className="smoke-alarm-list">{alarmTypes.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
           <div className="smoke-ai-policy"><h3>通知分级与风险跟进</h3><p>烟雾火警及高温异常优先通知并核实；低电、故障等设备隐患按风险等级安排提醒、工单与升级通知，减少重复消息。分级不是忽略告警，涉及监测失效的异常应及时处理；具体通知时限与升级条件在项目预案中明确。</p></div>
-          <p className="smoke-ai-note">AI 判别用于辅助研判，不替代现场核实。算法版本、分类规则及推送策略以项目交付配置为准。</p>
+          <p className="smoke-ai-note">AI 判别用于辅助研判，不替代现场核实。算法版本、分类规则及推送策略以项目交付配置为准。<a href="/#ai-architecture">另见陶然亭方案拟采用的端云协同 AI 架构 →</a></p>
         </div>
       </section>
       <section className="smoke-section" data-scroll-section>

@@ -304,6 +304,7 @@ export default function ProductShowcase() {
               <i />
               <span>现场闭环</span>
             </div>
+            <a className="p-ai-route" href="/#ai-architecture">了解陶然亭方案中的端云协同 AI 技术架构 <ArrowUpRight aria-hidden="true" /></a>
           </div>
         </section>
 

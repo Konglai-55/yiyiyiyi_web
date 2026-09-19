@@ -8,6 +8,7 @@
 .smoke-ai-policy { margin-top:36px; }
 .smoke-ai-note,.smoke-data-note { margin-top:24px; font-size:14px; line-height:1.8; color:#657d88; }
 .smoke-ai-note { color:#9fb7c4; }
+.smoke-ai-note a { display:inline-block; margin-left:8px; color:#83d9ef; font-weight:700; text-decoration:underline; text-underline-offset:4px; }
 .smoke-telemetry { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0 32px; }
 .smoke-telemetry article { padding:26px 0; border-top:2px solid var(--line-light); }
 .smoke-telemetry h3 { color:var(--blue-700); font-size:23px; }

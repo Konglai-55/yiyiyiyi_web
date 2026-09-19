@@ -1,5 +1,4 @@
 /* oxlint-disable next/no-img-element, next/no-html-link-for-pages -- static site navigation must preserve full-page route transitions in Vinext */
-import type { CSSProperties } from 'react';
 import {
   Activity,
   AlarmSmoke,
@@ -184,6 +183,7 @@ const serviceScenes = [
 ];
 
 const navItems = [
+  ['端云协同 AI', '#ai-architecture'],
   ['产品展示', '/products'],
   ['AI 大数据烟感', '/products/smoke'],
   ['项目案例', '#projects'],
@@ -310,8 +310,8 @@ export default function CorporateHome() {
                 <a className="c-action-primary" href="#business">
                   查看服务能力 <ArrowDown size={18} />
                 </a>
-                <a className="c-action-secondary" href="#projects">
-                  项目实景 <ArrowUpRight size={18} />
+                <a className="c-action-secondary" href="#ai-architecture">
+                  端云协同 AI <ArrowUpRight size={18} />
                 </a>
               </div>
             </div>
@@ -329,7 +329,7 @@ export default function CorporateHome() {
                   </p>
                 </article>
               ))}
-              <a href="#platform">
+              <a href="#ai-architecture">
                 继续了解 <ArrowDown aria-hidden="true" />
               </a>
             </div>
@@ -434,6 +434,67 @@ export default function CorporateHome() {
             <p className="c-note">
               具体设备配置、巡检频次、维修及耗材范围、服务期限，在项目方案与合同中明确。
             </p>
+          </div>
+        </section>
+
+        <section className="c-section c-ai-architecture" id="ai-architecture" data-scroll-section>
+          <div className="c-shell">
+            <div className="c-ai-intro" data-scroll-reveal="heading">
+              <div>
+                <span className="c-ai-eyebrow">新一代火灾预警技术方案 / EDGE × CLOUD</span>
+                <h2>端云协同 AI 技术架构</h2>
+              </div>
+              <p>不是让烟感只报一个“有烟”，而是让设备端先辨别异常来源，云端再结合场景作二次研判，由消防 AI 智能体推动通知、派单和跟进。人仍负责核实与现场处置。</p>
+            </div>
+
+            <div className="c-ai-diagram" data-scroll-reveal="line" aria-label="端云协同 AI 技术链路：前端感知、云端大模型研判、消防 AI 智能体处理、属地闭环">
+              <article className="c-ai-edge">
+                <div className="c-ai-layer-label"><span>01 / EDGE</span><b>前端感知</b></div>
+                <AlarmSmoke aria-hidden="true" />
+                <h3>分类式 AI 智慧烟感</h3>
+                <p>陶然亭方案拟采用第四代分类式 AI 烟感，在设备端对烟雾来源做初步识别。面对做饭油烟、水汽、扬尘等常见干扰，先形成类别线索，再通过方案拟用的 NB-IoT 网络上报告警与设备状态；本地声光报警仍按设备规则工作。</p>
+                <ul><li>烟雾来源初判</li><li>在线、低电与故障状态</li><li>异常事件联网传输</li></ul>
+              </article>
+
+              <div className="c-ai-link" aria-hidden="true"><span>事件与状态上报</span><i /></div>
+
+              <div className="c-ai-cloud">
+                <div className="c-ai-layer-label"><span>02 / CLOUD</span><b>云端研判与业务处理</b></div>
+                <div className="c-ai-cloud-modules">
+                  <article>
+                    <Database aria-hidden="true" />
+                    <small>云端大脑</small>
+                    <h3>火灾预警 AI 大模型</h3>
+                    <p>方案称模型基于三年积累的真实告警与火情样本训练。云端结合设备初判、历史告警、时间与场所特征进行二次研判，辅助区分真实火情与非火情干扰，给出风险等级、可疑原因和处置建议，并针对胡同、平房院落继续优化。</p>
+                  </article>
+                  <article>
+                    <Network aria-hidden="true" />
+                    <small>业务执行</small>
+                    <h3>消防专属 AI 智能体</h3>
+                    <p>把研判结果转成可执行任务：紧急火情优先通知，普通隐患进入核查，低电、离线和故障转入运维工单；按项目预案推送责任人，记录通知、反馈与处置进度。</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+
+            <div className="c-ai-closure" data-scroll-reveal="split">
+              <div><span>03 / LOCAL RESPONSE</span><h3>值守核实 · 属地处置 · 结果回流</h3></div>
+              <p>值守人员复核高风险告警，街道、社区、物业及场所责任人按预案核查现场；处置照片、工单和核实结果回到平台，供后续复盘与规则优化使用。AI 辅助判断，不替代人工确认和消防救援。</p>
+            </div>
+
+            <div className="c-ai-detail" data-scroll-reveal="cards">
+              <article>
+                <span>场景化训练</span>
+                <h3>重点解决老城区的复杂干扰</h3>
+                <p>陶然亭街道项目方案提出，利用真实告警与火情样本，并结合平房院落、老旧小区、独居家庭等场景，重点优化对做饭油烟、水汽、扬尘等干扰的识别，减少无效通知占用基层处置力量。</p>
+              </article>
+              <article>
+                <span>数据与管理</span>
+                <h3>从单条告警到区域风险画像</h3>
+                <p>按区域、点位、时间和处置结果汇总高频告警、设备健康与隐患分布，形成月度分析和重点点位清单，帮助管理人员调整巡检重点、跟踪整改，而不只是在报警后被动响应。</p>
+              </article>
+            </div>
+            <p className="c-ai-disclaimer">以上为陶然亭街道项目方案中的技术设计方向；拟选分类式 AI 烟感与现有产品页展示的设备不直接等同。设备选型、算法能力、通知方式及实际部署范围，以项目实施和验收结果为准。</p>
           </div>
         </section>
 
@@ -606,6 +667,7 @@ export default function CorporateHome() {
               <h3>快速导航</h3>
               <a href="#top">首页</a>
               <a href="/products">产品展示</a>
+              <a href="#ai-architecture">端云协同 AI</a>
               <a href="#operations">告警流程</a>
               <a href="#projects">项目案例</a>
             </nav>
