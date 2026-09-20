@@ -71,7 +71,7 @@ export default function SmokeProductDetail() {
             <h1>AI 大数据烟感</h1>
             <p>集双光路感烟、五类异常告警与 4G 联网于一体，搭配 AI 智能火情识别与分级上报方案，连接设备监测、云端分析和人工处置。面向商铺、社区、校园与街道，让火情相关告警优先触达，让低电、拆除和故障得到持续跟进。</p>
             <p className="smoke-hero-summary">五类告警 · 温湿度检测 · 分级通知 · 云端台账</p>
-            <div className="smoke-actions"><a href="#solution">了解产品方案 <ArrowDown size={18} /></a><a href="tel:17600000015">咨询设备配置 <PhoneCall size={17} /></a></div>
+            <div className="smoke-actions"><a href="#solution">了解产品方案 <ArrowDown size={18} /></a><a href="tel:4006222119">咨询设备配置 <PhoneCall size={17} /></a></div>
           </div>
           <figure className="smoke-hero-visual"><img src="https://yiyiyiyi.cn-nb1.rains3.com/website/c23bf5183fcc06b6/assets/smoke-yl-iot-yw03bd-hd-v1.png" alt="源流物联 YL-IOT-YW03BD 烟感报警器高清重构示意图，外观以实物为准" loading="eager" data-lightbox /><figcaption><b>YL-IOT-YW03BD</b></figcaption></figure>
         </div>
@@ -151,7 +151,7 @@ export default function SmokeProductDetail() {
             <article><h3>平台值守与告警跟进</h3><p>可配置 7×24 小时人工值守，开展告警核实、责任人通知和持续跟进。通知渠道、升级路径与现场响应要求在预案中明确。</p></article>
             <article><h3>巡检维护与运行报告</h3><p>检查设备离线、低电量、积灰和故障，按约定维修或更换。汇总设备健康、告警处理和问题清单，形成可追溯的运行记录。</p></article>
           </div>
-          <div className="smoke-order" id="smoke-quote"><div><span>产品咨询与订购</span><h2>获取烟感配置与报价</h2><p>提供项目城市、场所类型、建筑数量或面积、现有设备情况，以及是否需要人工值守和现场维护。我们据此沟通配置方案，并分别明确设备、安装、平台使用及运维服务费用。</p><p>咨询 → 需求与现场评估 → 配置报价 → 确认交付与服务范围</p><p>产品咨询：熊贵齐 · 176 0000 0015</p></div><a href="tel:17600000015">电话咨询配置与报价 <PhoneCall /></a></div>
+          <div className="smoke-order" id="smoke-quote"><div><span>产品咨询与订购</span><h2>获取烟感配置与报价</h2><p>提供项目城市、场所类型、建筑数量或面积、现有设备情况，以及是否需要人工值守和现场维护。我们据此沟通配置方案，并分别明确设备、安装、平台使用及运维服务费用。</p><p>咨询 → 需求与现场评估 → 配置报价 → 确认交付与服务范围</p><p>产品咨询：熊贵齐 · 4006-222-119</p></div><a href="tel:4006222119">电话咨询配置与报价 <PhoneCall /></a></div>
         </div>
       </section>
       <div className="c-footer-city" aria-hidden="true"><img src="https://yiyiyiyi.cn-nb1.rains3.com/website/d942268682076ef7/assets/footer-city-skyline-v2.png" alt="" loading="lazy" /></div>

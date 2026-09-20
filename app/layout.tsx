@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 const organization = {
   '@context': 'https://schema.org', '@type': 'Organization', '@id': `${siteUrl}/#organization`,
   name: '壹壹壹壹（北京）安全技术有限公司', alternateName: '壹消智慧消防', url: siteUrl,
-  logo: `${siteUrl}${assetManifest['/assets/brand-mark.jpg']}`, email: 'yixiaopingtai@126.com', telephone: '+86-176-0000-0015',
+  logo: `${siteUrl}${assetManifest['/assets/brand-mark.jpg']}`, email: 'yixiaopingtai@126.com', telephone: '4006-222-119',
   areaServed: ['北京','南京','邯郸'], knowsAbout: ['智慧消防','消防设备运维','智能烟感','端云协同AI','城市安全治理'],
 };
 

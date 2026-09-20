@@ -225,7 +225,7 @@ export default function ProductShowcase() {
                 <a href="#product-system">
                   查看产品构成 <ArrowDown aria-hidden="true" />
                 </a>
-                <a href="tel:17600000015">
+                <a href="tel:4006222119">
                   咨询产品方案 <ArrowUpRight aria-hidden="true" />
                 </a>
               </div>
@@ -407,7 +407,7 @@ export default function ProductShowcase() {
             <div className="p-buy-strip" data-scroll-reveal="split">
               <strong>平台适合谁使用</strong>
               <span>街道与社区管理人员</span><span>物业与场所负责人</span><span>值守与运维团队</span>
-              <a href="tel:17600000015">预约平台演示 <ArrowUpRight aria-hidden="true" /></a>
+              <a href="tel:4006222119">预约平台演示 <ArrowUpRight aria-hidden="true" /></a>
             </div>
           </div>
         </section>
@@ -454,7 +454,7 @@ export default function ProductShowcase() {
                   告诉我们项目所在城市、场所类型、建筑数量或大致面积，以及现有消防设备情况，我们会据此给出设备选型、点位规划、平台接入和服务报价建议。
                 </p>
               </div>
-              <a href="tel:17600000015">
+              <a href="tel:4006222119">
                 获取配置与报价 <PhoneCall aria-hidden="true" />
               </a>
             </div>
@@ -504,8 +504,8 @@ export default function ProductShowcase() {
             <div className="c-footer-column c-footer-column-contact">
               <h3>联系我们</h3>
               <p>项目负责人：熊贵齐</p>
-              <a className="c-footer-phone" href="tel:17600000015">
-                <PhoneCall aria-hidden="true" /> 176 0000 0015
+              <a className="c-footer-phone" href="tel:4006222119">
+                <PhoneCall aria-hidden="true" /> 4006-222-119
               </a>
               <p>方案沟通与项目合作</p>
             </div>
