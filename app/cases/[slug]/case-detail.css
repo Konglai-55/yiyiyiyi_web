@@ -16,6 +16,11 @@
 .case-story dd { margin:6px 0 0; }
 .case-consult { display:inline-block; background:var(--blue-700); color:white; padding:12px 24px; margin-top:30px; }
 .case-intro { font-size:23px; line-height:1.9; margin:0 0 42px; color:#31576b; }
+.case-detail-sections { margin:0 0 44px; }
+.case-detail-sections section { border-top:1px solid var(--line-light); padding:28px 0 4px; }
+.case-detail-sections section:first-child { border-top:0; padding-top:0; }
+.case-detail-sections h2 { margin:0 0 12px; font-size:24px; }
+.case-detail-sections p { margin:0; font-size:19px; line-height:2; color:#31576b; }
 .case-story-copy > p:not(.case-intro) { font-size:19px; line-height:1.95; }
 .case-story-copy ul { list-style:none; margin:0 0 44px; padding:0; }
 .case-story-copy li { font-size:19px; border-bottom:1px solid var(--line-light); padding:20px 0 20px 24px; position:relative; }
