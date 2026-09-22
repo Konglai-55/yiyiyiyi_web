@@ -8,6 +8,19 @@
 .case-platform img { display:block; width:100%; height:auto; cursor:zoom-in; }
 .case-platform figcaption { display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; padding:18px 24px; font-size:16px; color:var(--muted-light); }
 .case-platform figcaption a { color:var(--blue-300); }
+.case-gallery { padding-bottom:64px; }
+.case-gallery-heading { display:flex; align-items:flex-end; gap:22px; flex-wrap:wrap; margin-bottom:24px; }
+.case-gallery-heading p { width:100%; margin:0; color:var(--red); font-size:13px; letter-spacing:.18em; }
+.case-gallery-heading h2 { margin:0; color:var(--blue-300); font-size:30px; }
+.case-gallery-heading span { color:var(--muted-light); font-size:15px; }
+.case-gallery-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.case-gallery-count-1 { grid-template-columns:minmax(0,1fr); max-width:760px; }
+.case-gallery-count-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.case-gallery-grid figure { margin:0; border:1px solid var(--line-dark); background:#071b2b; }
+.case-gallery-grid a { display:block; overflow:hidden; }
+.case-gallery-grid img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .35s ease; }
+.case-gallery-grid a:hover img { transform:scale(1.025); }
+.case-gallery-grid figcaption { padding:12px 14px; color:var(--muted-light); font-size:14px; line-height:1.5; }
 .case-story, .case-more { background:var(--ice-100); color:var(--text-dark); padding:64px 0; }
 .case-story-grid { display:grid; grid-template-columns:minmax(230px,1fr) minmax(0,2.5fr); gap:80px; }
 .case-story h2, .case-more h2 { color:var(--blue-700); font-size:28px; line-height:1.5; margin-bottom:26px; }
@@ -42,6 +55,10 @@
  .case-scene { font-size:18px; }
  .case-platform { padding-bottom:32px; }
  .case-platform figcaption { padding:14px; }
+ .case-gallery { padding-bottom:36px; }
+ .case-gallery-heading { display:block; }
+ .case-gallery-heading h2 { font-size:25px; margin:4px 0 8px; }
+ .case-gallery-grid, .case-gallery-count-2, .case-gallery-count-1 { grid-template-columns:1fr; max-width:none; }
  .case-story { padding:36px 0; }
  .case-story-grid { grid-template-columns:1fr; gap:34px; }
  .case-story aside { border-bottom:1px solid var(--line-light); padding-bottom:32px; }

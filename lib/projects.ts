@@ -86,6 +86,26 @@ const slugs = ["beijing-dashilan","beijing-tianqiao","fengtai-shuangshao","jinan
 export const projects = projectRecords.map((project, index) => ({ ...project, slug: slugs[index] }));
 
 export type CaseDetailSection = { title: string; body: string };
+export type CaseGalleryItem = { src: string; alt: string };
+
+export const caseGallery: Record<string, CaseGalleryItem[]> = {
+  'nanjing-yijiangmen': [
+    { src: '/assets/case-photos/nanjing-yijiangmen-center.jpg', alt: '南京鼓楼区挹江门街道智慧消防运维中心室内大屏与沙盘' },
+    { src: '/assets/case-photos/nanjing-yijiangmen-front.jpg', alt: '南京挹江门街道应急管理消防一体化工作站门头' },
+    { src: '/assets/case-photos/nanjing-yijiangmen-building.jpg', alt: '南京挹江门街道消防一体化工作站街区实景' },
+  ],
+  'beijing-tianqiao': [
+    { src: '/assets/case-photos/tianqiao-center.jpg', alt: '北京市西城区天桥街道智慧消防运维中心室内实景' },
+    { src: '/assets/case-photos/tianqiao-dashboard.jpg', alt: '天桥街道智慧消防运维中心监控大屏' },
+  ],
+  'handan-campus': [
+    { src: '/assets/case-photos/handan-campus-center-wide.jpg', alt: '邯郸市校园智慧消防预警平台运维中心' },
+    { src: '/assets/case-photos/handan-campus-center.jpg', alt: '邯郸市校园智慧消防预警平台监控室' },
+  ],
+  'shijiazhuang-no12': [
+    { src: '/assets/case-photos/shijiazhuang-no12-center.jpg', alt: '石家庄市第十二中学智慧消防运维中心监控室' },
+  ],
+};
 
 export const caseDetails: Record<string, CaseDetailSection[]> = {
   'beijing-dashilan': [

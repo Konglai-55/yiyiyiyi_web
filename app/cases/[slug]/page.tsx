@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import NewsShell from '@/components/news-shell';
-import { caseDetails, projects } from '@/lib/projects';
+import { caseDetails, caseGallery, projects } from '@/lib/projects';
 import './case-detail.css';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -18,6 +18,7 @@ export default async function CaseDetail({ params }: Props) {
   const project = projects.find(item => item.slug === slug);
   if (!project) notFound();
   const detailSections = caseDetails[slug] ?? [];
+  const gallery = caseGallery[slug] ?? [];
   const jsonLd = { '@context': 'https://schema.org', '@type': 'Article', headline: project.title, description: project.intro, author: { '@id': 'https://yiyiyiyi.xn--fiqs8s/#organization' }, publisher: { '@id': 'https://yiyiyiyi.xn--fiqs8s/#organization' }, mainEntityOfPage: `https://yiyiyiyi.xn--fiqs8s/cases/${project.slug}`, image: project.image };
   return <NewsShell section="cases">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
@@ -27,6 +28,7 @@ export default async function CaseDetail({ params }: Props) {
       <p className="case-scene">{project.scene}</p>
     </header>
     <div className="case-platform c-shell"><figure><a href={project.image} target="_blank" rel="noopener noreferrer" aria-label={`打开${project.title}完整截图`}><img src={project.image} alt={`${project.title}平台监测界面`} width="1900" height="980" /></a><figcaption><span>项目平台实景</span><a href={project.image} target="_blank" rel="noopener noreferrer">查看完整截图 ↗</a></figcaption></figure></div>
+    {gallery.length > 0 && <section className="case-gallery c-shell" aria-label={`${project.title}项目现场图片`}><div className="case-gallery-heading"><p>PROJECT EVIDENCE</p><h2>项目现场与应用实景</h2><span>项目资料实拍 · 现场图片仅用于展示项目建设与运行环境</span></div><div className={`case-gallery-grid case-gallery-count-${gallery.length}`}>{gallery.map(item => <figure key={item.src}><a href={item.src} target="_blank" rel="noopener noreferrer" aria-label={`查看${item.alt}`}><img src={item.src} alt={item.alt} loading="lazy" data-lightbox /></a><figcaption>{item.alt}</figcaption></figure>)}</div></section>}
     <section className="case-story"><div className="c-shell case-story-grid"><aside><h2>项目概况</h2><dl><dt>项目区域</dt><dd>{project.location}</dd><dt>应用场景</dt><dd>{project.scene}</dd><dt>资料来源</dt><dd>{project.source}</dd></dl><a className="case-consult" href="/contact">咨询同类项目</a></aside><div className="case-story-copy"><p className="case-intro">{project.intro}</p>{detailSections.length > 0 && <div className="case-detail-sections">{detailSections.map(section => <section key={section.title}><h2>{section.title}</h2><p>{section.body}</p></section>)}</div>}<h2>项目内容与管理重点</h2><ul>{project.work.map(item=><li key={item}>{item}</li>)}</ul><h2>平台运行展示</h2><p>{platformNotes[slug]}</p><p className="case-evidence-note">图中设备数量、在线率及告警统计为截图时点的信息，不代表当前实时运行数据。</p><div className="case-links"><a href="/products">了解平台与设备体系 ↗</a><a href="/products/smoke">了解 AI 大数据烟感 ↗</a></div></div></div></section>
     <section className="case-more"><div className="c-shell"><h2>更多项目案例</h2><nav aria-label="全部项目案例">{projects.map(item=><a key={item.slug} href={`/cases/${item.slug}`} aria-current={item.slug===slug?'page':undefined}><span>{item.location}</span><strong>{item.title}</strong><span>{item.slug===slug?'当前案例':'查看案例 ↗'}</span></a>)}</nav></div></section>
   </NewsShell>;
