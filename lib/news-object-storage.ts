@@ -5,21 +5,24 @@ export class StorageConflict extends Error {}
 export class StorageUnavailable extends Error {}
 export async function newsStorageConfig() {
   const env = await config();
-  for (const key of ['S3_ENDPOINT','S3_BUCKET','S3_PUBLIC_URL','S3_ACCESS_KEY_ID','S3_SECRET_ACCESS_KEY']) {
+  // News records must never silently fall back to the public asset bucket.
+  for (const key of ['NEWS_S3_BUCKET','NEWS_S3_ACCESS_KEY_ID','NEWS_S3_SECRET_ACCESS_KEY']) {
     if (!env[key]) throw new StorageUnavailable(`Missing ${key}`);
   }
+  const endpoint = env.NEWS_S3_ENDPOINT || env.S3_ENDPOINT;
+  if (!endpoint) throw new StorageUnavailable('Missing NEWS_S3_ENDPOINT');
   const prefix = env.NEWS_STORAGE_PREFIX || 'cms-private/news-v1';
   if (!/^cms-private\/[a-zA-Z0-9/_-]+$/.test(prefix)) throw new StorageUnavailable('News prefix must be inside cms-private/');
-  return {env, prefix};
+  return {env, prefix, endpoint:endpoint.replace(/\/$/,''), bucket:env.NEWS_S3_BUCKET!, accessKeyId:env.NEWS_S3_ACCESS_KEY_ID!, secretAccessKey:env.NEWS_S3_SECRET_ACCESS_KEY!, region:env.NEWS_S3_REGION||env.S3_REGION||'us-east-1', publicUrl:env.NEWS_S3_PUBLIC_URL?.replace(/\/$/,'')};
 }
 async function objectUrl(key: string) {
-  const {env,prefix} = await newsStorageConfig();
+  const {endpoint,bucket,prefix} = await newsStorageConfig();
   if (!key.startsWith(prefix+'/') || key.includes('..')) throw new StorageUnavailable('Invalid news key');
-  return `${env.S3_ENDPOINT!.replace(/\/$/,'')}/${env.S3_BUCKET}/${key}`;
+  return `${endpoint}/${bucket}/${key}`;
 }
 export async function signedObject(key: string, init: RequestInit = {}) {
-  const {env} = await newsStorageConfig();
-  const aws = new AwsClient({accessKeyId:env.S3_ACCESS_KEY_ID!,secretAccessKey:env.S3_SECRET_ACCESS_KEY!,service:'s3',region:env.S3_REGION||'us-east-1',retries:0});
+  const {accessKeyId,secretAccessKey,region} = await newsStorageConfig();
+  const aws = new AwsClient({accessKeyId,secretAccessKey,service:'s3',region,retries:0});
   try {
     return await aws.fetch(await objectUrl(key), {...init, cache:'no-store', signal:AbortSignal.timeout(12000)});
   } catch { throw new StorageUnavailable('News object storage request failed'); }
@@ -46,13 +49,13 @@ let checked: {until:number; task:Promise<void>} | undefined;
 export async function ensurePrivateNewsStorage() {
   if (checked && checked.until > Date.now()) return checked.task;
   const task = (async () => {
-    const {env,prefix} = await newsStorageConfig();
+    const {prefix,publicUrl} = await newsStorageConfig();
     const key = `${prefix}/checks/${crypto.randomUUID()}.json`;
     try {
       await writeNewsObject(key,{probe:1},{create:true});
-      for (const url of [`${env.S3_PUBLIC_URL!.replace(/\/$/,'')}/${key}`,await objectUrl(key)]) {
+      for (const url of [await objectUrl(key),...(publicUrl?[`${publicUrl}/${key}`]:[])]) {
         const r = await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});
-        if (![403,404].includes(r.status)) throw new StorageUnavailable('Private news prefix is publicly readable; refusing write');
+        if (![403,404].includes(r.status)) throw new StorageUnavailable('Private news bucket is publicly readable; refusing write');
       }
       const first = await readNewsObject(key);
       if (!first) throw new StorageUnavailable('News probe missing');

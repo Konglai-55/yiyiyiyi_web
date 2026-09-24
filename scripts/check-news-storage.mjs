@@ -3,14 +3,16 @@ import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
 import { AwsClient } from 'aws4fetch';
 const env = process.env;
-for (const name of ['S3_ENDPOINT','S3_BUCKET','S3_PUBLIC_URL','S3_ACCESS_KEY_ID','S3_SECRET_ACCESS_KEY']) {
+for (const name of ['NEWS_S3_BUCKET','NEWS_S3_ACCESS_KEY_ID','NEWS_S3_SECRET_ACCESS_KEY']) {
   if (!env[name]) throw new Error(`Missing ${name}`);
 }
+const endpoint = (env.NEWS_S3_ENDPOINT || env.S3_ENDPOINT)?.replace(/\/$/,'');
+if (!endpoint) throw new Error('Missing NEWS_S3_ENDPOINT');
 const prefix = env.NEWS_STORAGE_PREFIX || 'cms-private/news-v1';
 if (!/^cms-private\/[a-zA-Z0-9/_-]+$/.test(prefix)) throw new Error('News must use a cms-private/ prefix');
 const key = `${prefix}/checks/${randomUUID()}.json`;
-const url = `${env.S3_ENDPOINT.replace(/\/$/,'')}/${env.S3_BUCKET}/${key}`;
-const aws = new AwsClient({accessKeyId:env.S3_ACCESS_KEY_ID,secretAccessKey:env.S3_SECRET_ACCESS_KEY,region:env.S3_REGION||'us-east-1',service:'s3',retries:0});
+const url = `${endpoint}/${env.NEWS_S3_BUCKET}/${key}`;
+const aws = new AwsClient({accessKeyId:env.NEWS_S3_ACCESS_KEY_ID,secretAccessKey:env.NEWS_S3_SECRET_ACCESS_KEY,region:env.NEWS_S3_REGION||env.S3_REGION||'us-east-1',service:'s3',retries:0});
 const put = (body,condition) => aws.fetch(url,{method:'PUT',headers:{'Content-Type':'application/json','Cache-Control':'private, no-store',...condition},body:JSON.stringify(body),signal:AbortSignal.timeout(15000)});
 try {
   let r = await put({probe:1},{'If-None-Match':'*'});
@@ -18,7 +20,7 @@ try {
   const read = await aws.fetch(url,{signal:AbortSignal.timeout(15000)});
   assert.ok(read.ok); const etag = read.headers.get('etag'); assert.ok(etag);
   assert.deepEqual(await read.json(),{probe:1});
-  for (const publicUrl of [`${env.S3_PUBLIC_URL.replace(/\/$/,'')}/${key}`,url]) {
+  for (const publicUrl of [url,...(env.NEWS_S3_PUBLIC_URL?[`${env.NEWS_S3_PUBLIC_URL.replace(/\/$/,'')}/${key}`]:[])]) {
     const anonymous = await fetch(publicUrl,{signal:AbortSignal.timeout(15000)});
     assert.ok([403,404].includes(anonymous.status),`Private prefix is public! HTTP ${anonymous.status}`);
   }

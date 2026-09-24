@@ -54,7 +54,8 @@ try {
   await assert.rejects(()=>news.updateNews(draft.slug,{...draft,status:'published'},1),e=>e.status===409);
   assert.equal((await news.listNews(true)).find(a=>a.slug===draft.slug).version,5);
   const {env,prefix}=await storage.newsStorageConfig();
-  assert.equal((await realFetch(`${env.S3_PUBLIC_URL}/${prefix}/catalog.json`)).status,403);
+  const newsPublicUrl=env.NEWS_S3_PUBLIC_URL||env.S3_PUBLIC_URL;
+  assert.equal((await realFetch(`${newsPublicUrl}/${prefix}/catalog.json`)).status,403);
   console.log('PASS deleted slug recreation protection and private draft catalog');
 } finally {
   rejectBackups=false;outage=false;
