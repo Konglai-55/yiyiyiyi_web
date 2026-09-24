@@ -507,6 +507,7 @@ export default function ProductShowcase() {
               <a className="c-footer-phone" href="tel:4006222119">
                 <PhoneCall aria-hidden="true" /> 4006-222-119
               </a>
+              <a href="mailto:yiyiyiyi@yyyybj.cn">yiyiyiyi@yyyybj.cn</a>
               <p>方案沟通与项目合作</p>
             </div>
           </div>
